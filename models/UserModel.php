@@ -1,4 +1,8 @@
 <?php 
+    namespace App\Models;
+
+    use App\Core\DatabaseConnection;
+
     class UserModel {
         private $dbc;
 
@@ -13,7 +17,7 @@
 
             $user = [];
             if($res) {
-                $user = $prep->fetch(PDO::FETCH_OBJ);
+                $user = $prep->fetch(\PDO::FETCH_OBJ);
             }
             return $user;
         }
@@ -25,19 +29,19 @@
 
             $user = [];
             if($res) {
-                $user = $prep->fetchAll(PDO::FETCH_OBJ);
+                $user = $prep->fetchAll(\PDO::FETCH_OBJ);
             }
             return $user;
         }
 
         public function getByUsername(string $username) {
-            $sql = 'SELECT * FROM user WHERE username = ?;';
+            $sql = 'SELECT * FROM librarian WHERE username = ?;';
             $prep = $this->dbc->getConnection()->prepare($sql);
             $res = $prep->execute([$username]);
 
             $user = [];
             if($res) {
-                $user = $prep->fetch(PDO::FETCH_OBJ);
+                $user = $prep->fetch(\PDO::FETCH_OBJ);
             }
             return $user;
         }
