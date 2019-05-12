@@ -1,0 +1,14 @@
+# Aktivacija modula
+RewriteEngine On
+
+# Base path putanja
+RewriteBase /Biblioteka/
+
+# Ako nije file, skip
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Ako nije dir, skip
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Sve preusmeri na...
+RewriteRule ^(.*)$ ./index.php?URL=$1 [L]

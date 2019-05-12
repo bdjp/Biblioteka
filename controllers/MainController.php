@@ -1,22 +1,17 @@
 <?php 
 namespace App\Controllers;
 
-class MainController {
+
+class MainController extends \App\Core\Controller {
     private $dbc;
 
-
-    public function __construct(\App\Core\DatabaseConnection &$dbc) {
-        $this->dbc = $dbc;
-    }
-
-
     public function home() {
-        $categoryModel = new \App\Models\CategoryModel($this->dbc);
+        $categoryModel = new \App\Models\CategoryModel($this->getDatabaseConnection());
         $categories = $categoryModel->getAll();
 
-        return [
-            'categories' => $categories
-        ];
+        $this->set('categories', $categories);
 
+        
     }
+
 }
