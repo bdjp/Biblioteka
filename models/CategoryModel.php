@@ -13,9 +13,9 @@
         public function getById(int $categoryId) {
             $sql = 'SELECT * FROM category WHERE category_id =?;';
             $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute([$category_id]);
+            $res = $prep->execute([$categoryId]);
 
-            $category = [];
+            $category = NULL;
             if($res) {
                 $category = $prep->fetch(\PDO::FETCH_OBJ);
             }

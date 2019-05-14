@@ -29,14 +29,22 @@
     $method = $foundRoute->getMethodName();
     
     
-    $fullControllerName = 'App\\Controllers\\' . $foundRoute->getControllerName() . 'Controller';
+    $fullControllerName = '\\App\\Controllers\\' . $foundRoute->getControllerName() . 'Controller';
 
     $controllerInstance = new $fullControllerName($databaseConnection);
     call_user_func_array([$controllerInstance, $method], $arguments);
     $data = $controllerInstance->getData();
 
-    foreach ($data as $name => $value) {
+   /* foreach ($data as $name => $value) {
         $$name = $value;
     }
 
-    require_once 'views/' . $foundRoute->getControllerName() . '/'. $foundRoute->getMethodName() . '.php';
+    require_once 'views/' . $foundRoute->getControllerName() . '/'. $foundRoute->getMethodName() . '.php';*/
+
+    $loader = new Twig_Loader_Filesystem("./views"); // mesto ucitavanja datoka za view generatore
+    $twig = new Twig_Environment($loader, [
+        "cache" => "./twig-cache",
+        "auto_reload" => true
+    ]);
+    echo $html = $twig->render($foundRoute->getControllerName() . '/'. $foundRoute->getMethodName() . '.html', $data);
+    

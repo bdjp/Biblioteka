@@ -82,10 +82,33 @@
             return $this->methodName;
         }
 
-        public function &extractArguments(string $url): array {
+        /*public function &extractArguments(string $url): array {
             $arguments = [];
             preg_match_all($this->pattern, $url, $arguments);
 
+            return $arguments;
+        }*/ //OVDE JE BILA GRESKA
+
+        public function &extractArguments($url) {
+            # Polazna pretpostavka je da nema uparenih grupa iz URL-a
+            $matches = [];
+    
+            # Metod koji po regularnom izrazu iz URL-a uzima uaprene grupe
+            preg_match_all($this->pattern, $url, $matches);
+    
+            # Brisemo brvi element niza, jer on sadrzi ceo URL
+            unset($matches[0]);
+    
+            # Pripremimo niz za buduce argumente izvucene iz URL-a na osnovu reg. izr.
+            $arguments = [];
+    
+            # Za svaku uparenu grupu iz matches uzimamo samo vrednost argumenta
+            foreach ($matches as $match) {
+                # i dodajemo tu vrednos tu prethodno napravljeni niz argumenata
+                $arguments[] = $match[0];
+            }
+    
+            # Tako napravljeni niz vracamo nazad da bude prosledjen metodu kontrolera
             return $arguments;
         }
     }
