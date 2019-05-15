@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #000;
+    
+}
+header {
+    display: grid;
+    grid-template-areas: "banneru menu";
+    grid-template-columns: 1fr 2fr;
+    border-bottom: 1.5px solid black;
+}
+#main-menu {grid-area: menu;}
+#banners {grid-area: banneru;}
+
+#main-menu {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+}
+
+#main-menu  a {
+    flex-grow: 1;
+    text-decoration: none;
+    text-align: center;
+    
+    
+     
+}
+#main-menu  a:hover {
+background-color: #b1ff00;
+color: #000;
+justify-content: stretch;
+     
+}
+
+#logo {
+    width: 200px;
+    height: 100px;
+    padding-top: 10px;
+}
+main {
+    min-height: calc(90vh - 150px);
+    min-height: calc(100vh - 150px);
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kategorije {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 50px 0;
+}
+.kategorije li {
+    display: inline-block;
+    border: 1px solid red;
+    padding: 30px;
+    margin: 0 15px;
+}
+.kategorije li:hover {
+    background-color: #acacac;
+}
+.kategorije ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    
+}

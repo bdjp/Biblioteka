@@ -46,5 +46,8 @@
         "cache" => "./twig-cache",
         "auto_reload" => true
     ]);
+
+    
+
     echo $html = $twig->render($foundRoute->getControllerName() . '/'. $foundRoute->getMethodName() . '.html', $data);
     

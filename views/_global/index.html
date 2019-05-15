@@ -3,15 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Sajt</title>
+    <title>Biblioteka - {% block naslov %}Pocetna{% endblock %}</title>
+    <!--<link rel="stylesheet" href="{{ BASE }}assets/libs/bootstrap/dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{{ BASE }}assets/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/biblioteka/assets/css/main.css">
 </head>
 
 <body>
+    <div class="container">
     <header>
-        Zaglavlje...
+        <div class="banners">
+            <a href="/Biblioteka/" class="banner">
+            <img id="logo" src="/biblioteka/assets/img/banner.png" alt="Banner 1"></a>
+        </div>
+        <nav id="main-menu">
+            
+                <a href="/Biblioteka/">Pocetna</a>
+                <a href="/Biblioteka/categories/">Kategorije</a>
+                <a href="/Biblioteka/profile/">Profil</a>
+                <a href="/Biblioteka/contact/">Kontakt</a>
+                <a href="/Biblioteka/log-out/">Odjava</a>
+            
+        </nav>
     </header>
 
-    <main>
+    <main class="main">
             {% block main %}
 
             {% endblock %}
@@ -20,6 +36,11 @@
     <footer>
         &copy; 2018 Biblioteka srednje skole
     </footer>
+
+    <script src="{{ BASE }}assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{ BASE }}assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ BASE }}assets/js/bookmarks.js"></script>
+</div>
 </body>
 
 </html>

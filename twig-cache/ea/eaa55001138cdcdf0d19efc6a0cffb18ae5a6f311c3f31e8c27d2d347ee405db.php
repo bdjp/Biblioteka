@@ -26,6 +26,7 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         $this->parent = false;
 
         $this->blocks = [
+            'naslov' => [$this, 'block_naslov'],
             'main' => [$this, 'block_main'],
         ];
     }
@@ -38,33 +39,78 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 
 <head>
     <meta charset=\"UTF-8\">
-    <title>Sajt</title>
+    <title>Biblioteka - ";
+        // line 6
+        $this->displayBlock('naslov', $context, $blocks);
+        echo "</title>
+    <!--<link rel=\"stylesheet\" href=\"";
+        // line 7
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/bootstrap/dist/css/bootstrap.min.css\">-->
+    <link rel=\"stylesheet\" href=\"";
+        // line 8
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/font-awesome/css/font-awesome.min.css\">
+    <link rel=\"stylesheet\" href=\"/biblioteka/assets/css/main.css\">
 </head>
 
 <body>
+    <div class=\"container\">
     <header>
-        Zaglavlje...
+        <div class=\"banners\">
+            <a href=\"/Biblioteka/\" class=\"banner\">
+            <img id=\"logo\" src=\"/biblioteka/assets/img/banner.png\" alt=\"Banner 1\"></a>
+        </div>
+        <nav id=\"main-menu\">
+            
+                <a href=\"/Biblioteka/\">Pocetna</a>
+                <a href=\"/Biblioteka/categories/\">Kategorije</a>
+                <a href=\"/Biblioteka/profile/\">Profil</a>
+                <a href=\"/Biblioteka/contact/\">Kontakt</a>
+                <a href=\"/Biblioteka/log-out/\">Odjava</a>
+            
+        </nav>
     </header>
 
-    <main>
+    <main class=\"main\">
             ";
-        // line 15
+        // line 31
         $this->displayBlock('main', $context, $blocks);
-        // line 18
+        // line 34
         echo "    </main>
 
     <footer>
         &copy; 2018 Biblioteka srednje skole
     </footer>
+
+    <script src=\"";
+        // line 40
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/jquery/dist/jquery.min.js\"></script>
+    <script src=\"";
+        // line 41
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
+    <script src=\"";
+        // line 42
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/js/bookmarks.js\"></script>
+</div>
 </body>
 
 </html>";
     }
 
-    // line 15
+    // line 6
+    public function block_naslov($context, array $blocks = [])
+    {
+        echo "Pocetna";
+    }
+
+    // line 31
     public function block_main($context, array $blocks = [])
     {
-        // line 16
+        // line 32
         echo "
             ";
     }
@@ -74,9 +120,14 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         return "_global/index.html";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  68 => 16,  65 => 15,  54 => 18,  52 => 15,  36 => 1,);
+        return array (  114 => 32,  111 => 31,  105 => 6,  96 => 42,  92 => 41,  88 => 40,  80 => 34,  78 => 31,  52 => 8,  48 => 7,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()

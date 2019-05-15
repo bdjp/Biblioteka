@@ -44,7 +44,7 @@ class __TwigTemplate_fea0748798fbff5ad58e67a3b4aa128937ceff89a41f109eb027fc52356
     public function block_main($context, array $blocks = [])
     {
         // line 4
-        echo "<nav>
+        echo "<nav class=\"kategorije\">
     <ul>
         ";
         // line 6
