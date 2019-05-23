@@ -11,6 +11,9 @@ class MainController extends \App\Core\Controller {
 
         $this->set('categories', $categories);
 
+        $userModel = new \App\Models\BookModel($this->getDatabaseConnection());
+        $userModel->editById(11, ['title' => 'ozbiljna knjiga']);
+
         
     }
 

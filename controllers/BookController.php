@@ -14,6 +14,20 @@
 
             $this->set('book', $book);
 
+
+          /*  $userModel = new \App\Models\UserModel($this->getDatabaseConnection());
+            $userModel ->add( 
+                [   
+                    'student_id' => $id,
+                    'forename'   => 'Milan',
+                    'surname'    => 'stefanos',
+                    'username'    => 'stefanos',
+                    'class'    => '2',
+                    'grade'    => '1',
+                    'password'    => 'stefanos',
+                    'salt'    => 'stefanos'
+                ]
+                );*/
         
     }
 
