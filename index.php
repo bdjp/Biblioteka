@@ -2,6 +2,8 @@
     require_once 'Configuration.php';
     require_once 'vendor/autoload.php';
 
+    ob_start();
+
     use App\Core\DatabaseConnection;
     use App\Core\DatabaseConfiguration;
     use App\Models\UserModel;
@@ -40,6 +42,15 @@
     }
 
     require_once 'views/' . $foundRoute->getControllerName() . '/'. $foundRoute->getMethodName() . '.php';*/
+
+    if($controllerInstance instanceof \App\Core\ApiController) {
+        ob_clean();
+        header('Content-type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        echo json_encode($data);
+        exit;
+    }
+
 
     $loader = new Twig_Loader_Filesystem("./views"); // mesto ucitavanja datoka za view generatore
     $twig = new Twig_Environment($loader, [
