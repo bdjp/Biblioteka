@@ -32,7 +32,7 @@
 
 
 
-        final public function getById(int $id): ?\stdClass {
+        final public function getById(int $id)  {
             $tableName = $this->getTableName();
             $sql = 'SELECT * FROM ' . $tableName .' WHERE ' . $tableName . '_id = ?;';
             $prep = $this->dbc->getConnection()->prepare($sql);
@@ -58,14 +58,22 @@
             return $items;
         }
 
-        private function isFieldNameValid(string $fieldName) {
-            return boolval(preg_match('|^[a-z][a-z_0-9]+[a-z0-9]$|', $fieldName));
+        final private function isFieldValueValid(string $fieldName, $fieldValue): bool {
+            $fields = $this->getFields();
+            $supportedFieldNames = array_keys($fields);
+
+            if(!\in_array($fieldName, $supportedFieldNames )) {
+                return false;
+            }
+
+            return $fields[$fieldName]->isValid($fieldValue);
+
         }
 
 
         final public function getByFieldName(string $fieldName, $value) {
-            if(!$this->isFieldNameValid($fieldName)) {
-                throw new Exception ('Invalid field name: '. $fieldName);
+            if(!$this->isFieldValueValid($fieldName, $value)) {
+                throw new Exception ('Invalid field name or value: '. $fieldName);
             }
 
             $tableName = $this->getTableName();
@@ -81,8 +89,8 @@
         }
 
         final public function getAllByFieldName(string $fieldName, $value)  {
-            if($this->isFieldNameValid($fieldName) == false) {
-                throw new Exception ('Invalid field name: '. $fieldName);
+            if(!$this->isFieldValueValid($fieldName, $value)) {
+                throw new \Exception ('Invalid field name or value: '. $fieldName);
             }
 
             $tableName = $this->getTableName();
