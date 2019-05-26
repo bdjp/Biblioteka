@@ -128,7 +128,7 @@
         }
 
         final public function add(array $data) {
-            $this-checkFieldList($data);
+            $this->checkFieldList($data);
 
             $tableName = $this->getTableName();
             $sqlFieldNames = implode(', ', array_keys($data));

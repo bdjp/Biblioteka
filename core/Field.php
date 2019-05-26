@@ -6,20 +6,20 @@
         private $editable;
     
 
-    public function __construct(string $pattern, bool $editable) {
-        $this->pattern  = $pattern;
-        $this->editable = $editable;
+    public function __construct(Validator $validator, bool $editable = true) {
+        $this->validator  = $validator;
+        $this->editable   = $editable;
     }
 
     public function isValid(string $value) {
-        return preg_match($this->pattern, $value);
+        return $this->validator->isValid($value);
     }
 
     public function isEditable() {
         return $this->editable;
     }
 
-    public static function editableInteger (int $length): Field {
+    /*public static function editableInteger (int $length): Field {
         return new Field('|^\-?[1-9][0-9]{0,' .($length-1) . '}$|', true);
     }
 
@@ -73,5 +73,5 @@
 
     public static function readonlyBit(): Field {
         return new Field('|^[01]$|', false);
-    }
+    }*/
 }
