@@ -44,10 +44,13 @@ class __TwigTemplate_fea0748798fbff5ad58e67a3b4aa128937ceff89a41f109eb027fc52356
     public function block_main($context, array $blocks = [])
     {
         // line 4
-        echo "<nav class=\"kategorije\">
+        echo "<p>";
+        echo twig_escape_filter($this->env, ($context["podatak"] ?? null), "html", null, true);
+        echo "</p>
+<nav class=\"kategorije\">
     <ul>
         ";
-        // line 6
+        // line 7
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["categories"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
@@ -55,12 +58,12 @@ class __TwigTemplate_fea0748798fbff5ad58e67a3b4aa128937ceff89a41f109eb027fc52356
 
         <li>
             <a href=\"/Biblioteka/category/";
-            // line 9
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "category_id", [], "any", false, false, false, 9), "html", null, true);
+            // line 10
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "category_id", [], "any", false, false, false, 10), "html", null, true);
             echo "\"> 
                ";
-            // line 10
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 10));
+            // line 11
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 11));
             echo "
             </a>
         </li>
@@ -71,7 +74,7 @@ class __TwigTemplate_fea0748798fbff5ad58e67a3b4aa128937ceff89a41f109eb027fc52356
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 17
         echo "    </ul>
 </nav>
 ";
@@ -89,7 +92,7 @@ class __TwigTemplate_fea0748798fbff5ad58e67a3b4aa128937ceff89a41f109eb027fc52356
 
     public function getDebugInfo()
     {
-        return array (  75 => 16,  63 => 10,  59 => 9,  51 => 6,  47 => 4,  44 => 3,  34 => 1,);
+        return array (  78 => 17,  66 => 11,  62 => 10,  54 => 7,  47 => 4,  44 => 3,  34 => 1,);
     }
 
     public function getSourceContext()

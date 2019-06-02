@@ -3,6 +3,7 @@
 
     class Controller {  // Osnovni kontroler - ostali kontroleri ne moraju da brinu u implementaciji konstruktora i uzimanju dbc
         private $dbc;
+        private $session;
         private $data = [];
 
         
@@ -10,6 +11,14 @@
         final public function __construct(\App\Core\DatabaseConnection &$dbc) {
             $this->dbc = $dbc;
         }
+        final public function &getSession(): \App\Core\Session\Session {
+            return $this->session;
+        }
+
+        final public function setSession(\App\Core\Session\Session &$session) {
+            $this->session = $session;
+        }
+
         // dbc je dostupan klasama koje je nasledjuju ovaj kontroler kroz Geter
         final public function &getDatabaseConnection(): \App\Core\DatabaseConnection {
             return $this->dbc;  // objekat dbc vracamo po referenci

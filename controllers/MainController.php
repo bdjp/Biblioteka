@@ -24,7 +24,15 @@ class MainController extends \App\Core\Controller {
             'librarian_id' => 2
             ]);
 
+        //$this->getSession()->put('neki_kljuc', 'Neka vrednost' . rand(100, 999));
         
+        $staraVrednost = $this->getSession()->get('neki_kljuc', '/');
+        $this->set('podatak', $staraVrednost);
+
+        $this->getSession()->clear();
     }
+
+    
+
 
 }
