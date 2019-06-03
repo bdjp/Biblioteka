@@ -43,14 +43,9 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         // line 6
         $this->displayBlock('naslov', $context, $blocks);
         echo "</title>
-    <!--<link rel=\"stylesheet\" href=\"";
-        // line 7
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/libs/bootstrap/dist/css/bootstrap.min.css\">-->
-    <link rel=\"stylesheet\" href=\"";
-        // line 8
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/libs/font-awesome/css/font-awesome.min.css\">
+    <!--<link rel=\"stylesheet\" href=\"assets/libs/bootstrap/dist/css/bootstrap.min.css\">-->
+    <link rel=\"icon\" type=\"image/png\" href=\"assets/img/banner.png\">
+     <!--<link rel=\"stylesheet\" href=\"assets/libs/font-awesome/css/font-awesome.min.css\">-->
     <link rel=\"stylesheet\" href=\"/biblioteka/assets/css/main.css\">
 </head>
 
@@ -74,27 +69,18 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 
     <main class=\"main\">
             ";
-        // line 31
+        // line 32
         $this->displayBlock('main', $context, $blocks);
-        // line 34
+        // line 35
         echo "    </main>
 
     <footer>
         &copy; 2018 Biblioteka srednje skole
     </footer>
 
-    <script src=\"";
-        // line 40
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/libs/jquery/dist/jquery.min.js\"></script>
-    <script src=\"";
-        // line 41
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
-    <script src=\"";
-        // line 42
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/js/bookmarks.js\"></script>
+    <script src=\"assets/libs/jquery/dist/jquery.min.js\"></script>
+    <script src=\"assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
+    <!--<script src=\"assets/js/bookmarks.js\"></script>-->
 </div>
 </body>
 
@@ -107,10 +93,10 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         echo "Pocetna";
     }
 
-    // line 31
+    // line 32
     public function block_main($context, array $blocks = [])
     {
-        // line 32
+        // line 33
         echo "
             ";
     }
@@ -120,14 +106,9 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         return "_global/index.html";
     }
 
-    public function isTraitable()
-    {
-        return false;
-    }
-
     public function getDebugInfo()
     {
-        return array (  114 => 32,  111 => 31,  105 => 6,  96 => 42,  92 => 41,  88 => 40,  80 => 34,  78 => 31,  52 => 8,  48 => 7,  44 => 6,  37 => 1,);
+        return array (  100 => 33,  97 => 32,  91 => 6,  75 => 35,  73 => 32,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()

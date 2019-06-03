@@ -35,13 +35,23 @@
 
     $controllerInstance = new $fullControllerName($databaseConnection);
 
+    $fingerpringProviderFactoryClass = Configuration::FINGERPRINT_PROVIDER_FACTORY;
+    $fingerpringProviderFactoryMethod = Configuration::FINGERPRINT_PROVIDER_METHOD;
+    $fingerpringProviderFactoryArgs = Configuration::FINGERPRINT_PROVIDER_ARGS;
+    $fingerpringProviderFactory = new $fingerpringProviderFactoryClass;
+    $fingerpringProvider = $fingerpringProviderFactory->$fingerpringProviderFactoryMethod(...$fingerpringProviderFactoryArgs);
+
+
     $sessionStorageClassName = Configuration::SESSION_STORAGE;
     $sessionStorageArgs = Configuration::SESSION_STORAGE_DATA;
     $sessionStorage = new $sessionStorageClassName(...$sessionStorageArgs);
 
     $session = new \App\Core\Session\Session($sessionStorage, Configuration::SESSION_LIFETIME);
+    $session->setFingerpringProvider($fingerpringProvider);
+    
     $controllerInstance->setSession($session);
     $controllerInstance->getSession()->reload();
+    $controllerInstance->__pre();
 
     call_user_func_array([$controllerInstance, $method], $arguments);
     $controllerInstance->getSession()->save();

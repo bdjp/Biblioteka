@@ -21,9 +21,26 @@
         }
 
         final private function getTableName(): string {
+            /* - novi nacin - tair vezbe */
+            $imeKlase = static::class;
+
+            $matches = [];
+            \preg_match('@^App\\\Models\\\((?:[A-Z][a-z]+)+)Model$@', $imeKlase, $matches);
+
+            $grupa = $matches[1];
+
+            $grupaSaDonjomCrtom = \preg_replace('|[A-Z]|', '_$0', $grupa);
+
+            $malimSlovima = strtolower($grupaSaDonjomCrtom);
+
+            $tableName = \substr($malimSlovima, 1);
+
+            return $tableName;
+
+           /* stari nacin - tair yt
             $matches= [];
             preg_match('|^.*\\\((?:[A-Z][a-z]+)+)Model$|', static::class, $matches);
-            return substr(\strtolower(\preg_replace('|[A-Z]|', '_$0', $matches[1] ?? '')), 1);
+            return substr(\strtolower(\preg_replace('|[A-Z]|', '_$0', $matches[1] ?? '')), 1);*/
         }
 
         final private function getPrimaryKeyName(): string {

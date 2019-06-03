@@ -6,6 +6,9 @@
         private $session;
         private $data = [];
 
+        public function __pre() {
+
+        }
         
         // Ucicemo ovaj konstructor Finalnim, kako ne bi mogle klase koje nasledjuju osnovni kontroler da promene ovo ponasanje
         final public function __construct(\App\Core\DatabaseConnection &$dbc) {
@@ -39,5 +42,12 @@
 
         final public function getData(): array {  // vraca vrednost data
             return $this->data;
+        }
+
+        final protected function redirect(string $path, int $code = 307) {
+            \ob_clean();
+            header('Location: '. $path, true, $code);
+            exit;
+
         }
     }
