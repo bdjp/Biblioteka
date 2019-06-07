@@ -5,7 +5,7 @@
     <p> Spisak knjiga u ovoj kategoriji: </p>
     <ul>
         {% for book in booksInCategory %}
-        <li> <a href="/Biblioteka/book/{{ book.book_id }}">
+        <li> <a href="{{ BASE }}book/{{ book.book_id }}">
             {{ book.title|escape }}</a><br>
             {{ book.description|escape }}
         {% endfor %}

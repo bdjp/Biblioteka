@@ -7,7 +7,7 @@
         {% for category in categories %} 
 
         <li>
-            <a href="/Biblioteka/category/{{ category.category_id }}"> 
+            <a href="{{ BASE }}category/{{ category.category_id }}"> 
                {{ category.name|escape }}
             </a>
         </li>

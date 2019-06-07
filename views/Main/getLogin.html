@@ -1,7 +1,7 @@
 {% extends "_global/index.html" %}
 
 {% block main %}
-<form action="/Biblioteka/user/login" method="POST">
+<form action="{{ BASE }}user/login" method="POST">
     <div>
         <label for="input_username">Username:</label>
         <input type="text" id="input_username" name="login_username" required 

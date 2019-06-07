@@ -44,7 +44,9 @@ class __TwigTemplate_e916e7ed515ff4a1a5bf6708d85d15834ab2ce645961278dc133ee6bdc2
     public function block_main($context, array $blocks = [])
     {
         // line 4
-        echo "<form action=\"/Biblioteka/user/login\" method=\"POST\">
+        echo "<form action=\"";
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "user/login\" method=\"POST\">
     <div>
         <label for=\"input_username\">Username:</label>
         <input type=\"text\" id=\"input_username\" name=\"login_username\" required 

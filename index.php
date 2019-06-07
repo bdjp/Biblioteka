@@ -16,6 +16,8 @@
         Configuration::DATABASE_NAME
     );
 
+    define('BASE', Configuration::BASE);
+
     $databaseConnection = new databaseConnection($databaseConfiguration);
     
     $url = strval(filter_input(INPUT_GET, 'URL'));
@@ -25,8 +27,13 @@
     foreach (require_once 'Routes.php' as $route) {
         $router->add($route);
     }
+    print($httpMethod);
+    print($url);
+    exit;
 
     $foundRoute = $router->find($httpMethod, $url);
+    
+
     $arguments = $foundRoute->extractArguments($url);
     $method = $foundRoute->getMethodName();
     
@@ -78,7 +85,8 @@
         "cache" => "./twig-cache",
         "auto_reload" => true
     ]);
-
+    
+    $data['BASE'] = BASE;
     
 
     echo $html = $twig->render($foundRoute->getControllerName() . '/'. $foundRoute->getMethodName() . '.html', $data);

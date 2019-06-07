@@ -82,14 +82,14 @@
             return $this->methodName;
         }
 
-        /*public function &extractArguments(string $url): array {
+        /*public function &extractArguments($url): array {
             $arguments = [];
             preg_match_all($this->pattern, $url, $arguments);
 
             return $arguments;
-        }*/ //OVDE JE BILA GRESKA
+        } */ //OVDE JE BILA GRESKA
 
-        public function &extractArguments($url) {
+          public function &extractArguments($url) {
             # Polazna pretpostavka je da nema uparenih grupa iz URL-a
             $matches = [];
     

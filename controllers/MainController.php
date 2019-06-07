@@ -68,7 +68,8 @@ class MainController extends \App\Core\Controller {
             $this->getSession()->put('user_id', $user->user_id);
             $this->getSession()->save();
 
-            $this->redirect('/Biblioteka/user/profile');
+            
+            $this->redirect(\Configuration::BASE . 'user/dashboard');
 
         }
     

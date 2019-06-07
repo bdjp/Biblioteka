@@ -5,25 +5,25 @@
     <meta charset="UTF-8">
     <title>Biblioteka - {% block naslov %}Pocetna{% endblock %}</title>
     <!--<link rel="stylesheet" href="assets/libs/bootstrap/dist/css/bootstrap.min.css">-->
-    <link rel="icon" type="image/png" href="assets/img/banner.png">
+    <link rel="icon" type="image/png" href="{{ BASE }}assets/img/banner.png">
      <!--<link rel="stylesheet" href="assets/libs/font-awesome/css/font-awesome.min.css">-->
-    <link rel="stylesheet" href="/biblioteka/assets/css/main.css">
+    <link rel="stylesheet" href="{{ BASE }}assets/css/main.css">
 </head>
 
 <body>
     <div class="container">
     <header>
         <div class="banners">
-            <a href="/Biblioteka/" class="banner">
-            <img id="logo" src="/biblioteka/assets/img/banner.png" alt="Banner 1"></a>
+            <a href="{{ BASE }}" class="banner">
+            <img id="logo" src="{{ BASE }}assets/img/banner.png" alt="Banner 1"></a>
         </div>
         <nav id="main-menu">
             
-                <a href="/Biblioteka/">Pocetna</a>
-                <a href="/Biblioteka/categories/">Kategorije</a>
-                <a href="/Biblioteka/profile/">Profil</a>
-                <a href="/Biblioteka/contact/">Kontakt</a>
-                <a href="/Biblioteka/log-out/">Odjava</a>
+                <a href="{{ BASE }}">Pocetna</a>
+                <a href="{{ BASE }}categories/">Kategorije</a>
+                <a href="{{ BASE }}profile/">Profil</a>
+                <a href="{{ BASE }}contact/">Kontakt</a>
+                <a href="{{ BASE }}log-out/">Odjava</a>
             
         </nav>
     </header>
@@ -38,8 +38,9 @@
         &copy; 2018 Biblioteka srednje skole
     </footer>
 
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script> const BASE = '{{ BASE }}';</script>
+    <script src="{{ BASE }}assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{ BASE }}assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!--<script src="assets/js/bookmarks.js"></script>-->
 </div>
 </body>

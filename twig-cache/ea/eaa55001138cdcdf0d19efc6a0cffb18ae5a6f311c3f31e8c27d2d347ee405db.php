@@ -44,25 +44,52 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         $this->displayBlock('naslov', $context, $blocks);
         echo "</title>
     <!--<link rel=\"stylesheet\" href=\"assets/libs/bootstrap/dist/css/bootstrap.min.css\">-->
-    <link rel=\"icon\" type=\"image/png\" href=\"assets/img/banner.png\">
+    <link rel=\"icon\" type=\"image/png\" href=\"";
+        // line 8
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/img/banner.png\">
      <!--<link rel=\"stylesheet\" href=\"assets/libs/font-awesome/css/font-awesome.min.css\">-->
-    <link rel=\"stylesheet\" href=\"/biblioteka/assets/css/main.css\">
+    <link rel=\"stylesheet\" href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/css/main.css\">
 </head>
 
 <body>
     <div class=\"container\">
     <header>
         <div class=\"banners\">
-            <a href=\"/Biblioteka/\" class=\"banner\">
-            <img id=\"logo\" src=\"/biblioteka/assets/img/banner.png\" alt=\"Banner 1\"></a>
+            <a href=\"";
+        // line 17
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "\" class=\"banner\">
+            <img id=\"logo\" src=\"";
+        // line 18
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/img/banner.png\" alt=\"Banner 1\"></a>
         </div>
         <nav id=\"main-menu\">
             
-                <a href=\"/Biblioteka/\">Pocetna</a>
-                <a href=\"/Biblioteka/categories/\">Kategorije</a>
-                <a href=\"/Biblioteka/profile/\">Profil</a>
-                <a href=\"/Biblioteka/contact/\">Kontakt</a>
-                <a href=\"/Biblioteka/log-out/\">Odjava</a>
+                <a href=\"";
+        // line 22
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "\">Pocetna</a>
+                <a href=\"";
+        // line 23
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "categories/\">Kategorije</a>
+                <a href=\"";
+        // line 24
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "profile/\">Profil</a>
+                <a href=\"";
+        // line 25
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "contact/\">Kontakt</a>
+                <a href=\"";
+        // line 26
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "log-out/\">Odjava</a>
             
         </nav>
     </header>
@@ -78,8 +105,18 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         &copy; 2018 Biblioteka srednje skole
     </footer>
 
-    <script src=\"assets/libs/jquery/dist/jquery.min.js\"></script>
-    <script src=\"assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
+    <script> const BASE = '";
+        // line 41
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "';</script>
+    <script src=\"";
+        // line 42
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/jquery/dist/jquery.min.js\"></script>
+    <script src=\"";
+        // line 43
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
     <!--<script src=\"assets/js/bookmarks.js\"></script>-->
 </div>
 </body>
@@ -106,9 +143,14 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         return "_global/index.html";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  100 => 33,  97 => 32,  91 => 6,  75 => 35,  73 => 32,  44 => 6,  37 => 1,);
+        return array (  137 => 33,  134 => 32,  128 => 6,  118 => 43,  114 => 42,  110 => 41,  102 => 35,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  79 => 23,  75 => 22,  68 => 18,  64 => 17,  54 => 10,  49 => 8,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()

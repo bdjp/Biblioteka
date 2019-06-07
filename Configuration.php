@@ -1,5 +1,7 @@
 <?php 
     final class Configuration {
+        const BASE = 'http://localhost/Biblioteka/';
+
         const DATABASE_HOST = 'localhost';
         const DATABASE_USER = 'root';
         const DATABASE_PASS = '';

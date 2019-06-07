@@ -57,8 +57,10 @@ class __TwigTemplate_fea0748798fbff5ad58e67a3b4aa128937ceff89a41f109eb027fc52356
             echo " 
 
         <li>
-            <a href=\"/Biblioteka/category/";
+            <a href=\"";
             // line 10
+            echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+            echo "category/";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "category_id", [], "any", false, false, false, 10), "html", null, true);
             echo "\"> 
                ";
@@ -92,7 +94,7 @@ class __TwigTemplate_fea0748798fbff5ad58e67a3b4aa128937ceff89a41f109eb027fc52356
 
     public function getDebugInfo()
     {
-        return array (  78 => 17,  66 => 11,  62 => 10,  54 => 7,  47 => 4,  44 => 3,  34 => 1,);
+        return array (  80 => 17,  68 => 11,  62 => 10,  54 => 7,  47 => 4,  44 => 3,  34 => 1,);
     }
 
     public function getSourceContext()

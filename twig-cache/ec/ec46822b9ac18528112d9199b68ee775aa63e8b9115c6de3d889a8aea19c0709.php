@@ -56,7 +56,9 @@ class __TwigTemplate_c3b8b5141a83709c7fda3e07cdd69688bda6671f0cbaf86029e73a43fb5
         $context['_seq'] = twig_ensure_traversable(($context["booksInCategory"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["book"]) {
             // line 8
-            echo "        <li> <a href=\"/Biblioteka/book/";
+            echo "        <li> <a href=\"";
+            echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+            echo "book/";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "book_id", [], "any", false, false, false, 8), "html", null, true);
             echo "\">
             ";
@@ -99,7 +101,7 @@ class __TwigTemplate_c3b8b5141a83709c7fda3e07cdd69688bda6671f0cbaf86029e73a43fb5
 
     public function getDebugInfo()
     {
-        return array (  85 => 17,  82 => 16,  76 => 12,  68 => 10,  64 => 9,  59 => 8,  55 => 7,  48 => 4,  45 => 3,  35 => 1,);
+        return array (  87 => 17,  84 => 16,  78 => 12,  70 => 10,  66 => 9,  59 => 8,  55 => 7,  48 => 4,  45 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
