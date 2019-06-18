@@ -1,0 +1,26 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+    <div>
+        <div class="options">
+            <a href="{{ BASE }}user/categories">Prikazi sve kategorije</a>
+            <a href="{{ BASE }}user/categories/add">Dodaj novu kategoriju</a>
+        </div>
+
+        <from class="category-form" method="POST">
+            <div>
+                <label for="name">Ime: </label>
+                <input type="text" id="name" name="name" value="{{category.name|escape}}">
+            </div>
+
+            <div>
+                <button type="submit">
+                    Izmeni kategoriju
+                </button>
+            </div>
+        </from>
+            
+        
+    </div>
+
+{% endblock %}

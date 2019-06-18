@@ -1,0 +1,18 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+    <h1>{{ category.name|escape }}</h1>
+    <p> Spisak knjiga u ovoj kategoriji: </p>
+    <ul>
+        {% for book in booksInCategory %}
+        <li> <a href="{{ BASE }}book/{{ book.book_id }}">
+            {{ book.title|escape }}</a><br>
+            {{ book.description|escape }}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+{% block naslov %}
+{{ category.name|escape }}
+{% endblock %}

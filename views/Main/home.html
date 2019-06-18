@@ -1,0 +1,19 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<p>{{ podatak }}</p>
+<nav class="kategorije">
+    <ul>
+        {% for category in categories %} 
+
+        <li>
+            <a href="{{ BASE }}category/{{ category.category_id }}"> 
+               {{ category.name|escape }}
+            </a>
+        </li>
+
+
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}

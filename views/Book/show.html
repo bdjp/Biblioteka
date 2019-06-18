@@ -1,0 +1,13 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+    <h1>{{ book.title|escape }}</h1>
+    <p> {{ book.description }} </p>
+    <p> ISBN: {{ book.isbn }} </p>
+    <p> Datum objavljivanja: {{ book.publication_date|date('j. n. Y.') }} </p>
+    
+{% endblock %}
+
+{% block naslov %}
+{{ category.name|escape }}
+{% endblock %}
