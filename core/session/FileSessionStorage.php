@@ -1,34 +1,42 @@
 <?php
-    namespace App\Core\Session;
+namespace App\Core\Session;
 
-    class FileSessionStorage implements SessionStorage {
-        private $sessionPath;
+class FileSessionStorage implements SessionStorage {
+        private $path;
 
-        public function __construct( $sessionPath) {
-            $this->sessionPath = $sessionPath;
-        }
-        public function save($sessionId, $sessionData) {
-            $sessionFileName = $this->sessionPath . $sessionId . '.json';
-            file_put_contents($sessionFileName, $sessionData);
+        public function __construct($path) {
+            $this->path = $path;
         }
 
-        public function load($sessionId): string {
-            $sessionFileName = $this->sessionPath . $sessionId . '.json';
-            if(!file_exists($sessionFileName)) {
-                return '{}';
+        public function save($sessionId, $data) {
+            @mkdir($this->path, 0755, true);
+            $sessionFile = $this->path . $sessionId . '.json';
+            $dataJson = json_encode($data);
+            file_put_contents($sessionFile, $dataJson);
+        }
+
+        public function load($sessionId) {
+            $sessionFile = $this->path . $sessionId . '.json';
+
+            if (!file_exists($sessionFile)) {
+                return (object) [];
             }
-            return \file_get_contents($sessionFileName);
-        }
 
-        public function delete($sessionId){
-            $sessionFileName = $this->sessionPath . $sessionId . '.json';
+            $dataJson = file_get_contents($sessionFile);
+            $data = json_decode($dataJson);
 
-            if(!file_exists($sessionFileName)) {
-                unlink($sessionFileName);
+            if (!$data) {
+                return (object) [];
             }
+
+            return $data;
         }
 
-        public function cleanUp(int $sessionAge){
-            // TODO: Implement
+        public function delete($sessionId) {
+            unlink($this->path . $sessionId . '.json');
+        }
+
+        public function cleanUp($age) {
+            // ???
         }
     }

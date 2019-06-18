@@ -43,82 +43,197 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         // line 6
         $this->displayBlock('naslov', $context, $blocks);
         echo "</title>
-    <!--<link rel=\"stylesheet\" href=\"assets/libs/bootstrap/dist/css/bootstrap.min.css\">-->
     <link rel=\"icon\" type=\"image/png\" href=\"";
-        // line 8
+        // line 7
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/img/banner.png\">
-     <!--<link rel=\"stylesheet\" href=\"assets/libs/font-awesome/css/font-awesome.min.css\">-->
+    <link rel=\"stylesheet\" href=\"";
+        // line 8
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/bootstrap/dist/css/bootstrap.min.css\">
+    <link rel=\"stylesheet\" href=\"";
+        // line 9
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/@fortawesome/fontawesome-free/css/all.min.css\">
     <link rel=\"stylesheet\" href=\"";
         // line 10
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/css/main.css\">
+    <link rel=\"stylesheet\" href=\"";
+        // line 11
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/css/style.css\">
 </head>
 
 <body>
-    <div class=\"container\">
-    <header>
-        <div class=\"banners\">
-            <a href=\"";
-        // line 17
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "\" class=\"banner\">
-            <img id=\"logo\" src=\"";
-        // line 18
+    <div class=\"container-fluid\">
+        <nav class=\"navbar navbar-expand-lg\" id=\"glavni-nav\">
+
+
+
+            <a class=\"navbar-brand\">
+                <img id=\"logo\" src=\"";
+        // line 21
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/img/banner.png\" alt=\"Banner 1\"></a>
-        </div>
-        <nav id=\"main-menu\">
-            
-                <a href=\"";
-        // line 22
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "\">Pocetna</a>
-                <a href=\"";
-        // line 23
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "categories/\">Kategorije</a>
-                <a href=\"";
-        // line 24
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "profile/\">Profil</a>
-                <a href=\"";
-        // line 25
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "contact/\">Kontakt</a>
-                <a href=\"";
-        // line 26
-        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "log-out/\">Odjava</a>
-            
+
+            <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\"
+                aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                <span class=\"navbar-toggler-icon\"></span>
+            </button>
+
+            <div class=\"collapse navbar-collapse\" id=\"navbarText\">
+                <ul class=\"navbar-nav mr-auto\">
+                    <li class=\"nav-item active\">
+                        <a class=\"nav-link\" href=\"#\">Naslovna <span class=\"sr-only\">(current)</span></a></li>
+                    <li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Kategorije</a></li>
+                    <li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Knjige</a></li>
+                </ul>
+
+                <ul class=\"navbar-nav ml-auto\">
+                    <li class=\"nav-item \">
+                        <a class=\"nav-link\" href=\"#\">Knjige</a>
+                    </li>
+                    <li class=\"nav-item \">
+                        <a class=\"nav-link\" href=\"#\">Knjige</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
-    </header>
 
-    <main class=\"main\">
-            ";
-        // line 32
+        <div class=\"row  justify-content-end align-items-center py-2\" id=\"drugi_nav\">
+            <div class=\"col-md-3 text-right mr-3\">
+                    <a><i class=\"fab fa-facebook-square fa-2x px-1\"></i></a>
+                    <a><i class=\"fab fa-instagram fa-2x px-1\"></i></a>
+                    <a><i class=\"fab fa-youtube fa-2x px-1\"></i></a>
+            </div>
+        </div>
+        ";
+        // line 54
         $this->displayBlock('main', $context, $blocks);
-        // line 35
-        echo "    </main>
+        // line 57
+        echo "        
 
-    <footer>
-        &copy; 2018 Biblioteka srednje skole
-    </footer>
+            <footer id=\"footer\">
+                <p>Copyright Bikovi, &copy; 2019</p>
+            </footer>
 
-    <script> const BASE = '";
-        // line 41
+        </div> <!-- Container -->
+
+
+
+
+
+
+
+        
+
+
+        <header id=\"header\">
+            <div class=\"row\">
+                <div class=\"col-md-12\">
+                    <a href=\"#\" target=\"_blank\"><i class=\"fab fa-facebook-square\"></i></a>
+                    <a href=\"#\" target=\"_blank\"><i class=\"fab fa-instagram\"></i></a>
+                    <a href=\"#\" target=\"_blank\"><i class=\"fab fa-youtube\"></i></a>
+                </div>
+            </div>
+        </header>
+
+
+
+        <section id=\"main\">
+            <div class=\"container\">
+                <div class=\"row\">
+                    <!-- Categories -->
+                    <div class=\"col-md-3\">
+                        <div class=\"list-group\">
+                            <a href=\"index.html\" class=\"list-group-item active main-color-bg\">
+                                <span aria-hidden=\"true\"><i class=\"fas fa-book\"></i></span> Kategorije
+                            </a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Autobiografija <span
+                                    class=\"badge\">4</span></a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Drama <span
+                                    class=\"badge\">12</span></a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Klasisci <span
+                                    class=\"badge\">3</span></a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Komedija <span
+                                    class=\"badge\">24</span></a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Naucna fantastika <span
+                                    class=\"badge\">10</span></a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Poezija <span
+                                    class=\"badge\">12</span></a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Pripovetka <span
+                                    class=\"badge\">16</span></a>
+                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Roman <span
+                                    class=\"badge\">32</span></a>
+                        </div>
+                    </div>
+
+                    <div class=\"col-md-9\">
+                        <!-- Popular Books -->
+                        <div class=\"panel panel-default\">
+                            <div class=\"panel-heading main-color-bg\">
+                                <h3 class=\"panel-title\">Popularne knjige</h3>
+                            </div>
+                            <div class=\"panel-body\">
+                                <div class=\"col-md-3\">
+                                    <div class=\"well dash-box\">
+                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
+                                        <h3>Na drini cuprija</h3>
+                                        <p>Ivo Andric</p>
+                                    </div>
+                                </div>
+                                <div class=\"col-md-3\">
+                                    <div class=\"well dash-box\">
+                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
+                                        <h3>Na drini cuprija</h3>
+                                        <p>Ivo Andric</p>
+                                    </div>
+                                </div>
+                                <div class=\"col-md-3\">
+                                    <div class=\"well dash-box\">
+                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
+                                        <h3>Na drini cuprija</h3>
+                                        <p>Ivo Andric</p>
+                                    </div>
+                                </div>
+                                <div class=\"col-md-3\">
+                                    <div class=\"well dash-box\">
+                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
+                                        <h3>Na drini cuprija</h3>
+                                        <p>Ivo Andric</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Popular Books -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id=\"footer\">
+            <p>Copyright Bikovi, &copy; 2019</p>
+        </footer>
+
+
+        
+
+            <script> const BASE = '";
+        // line 166
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "';</script>
-    <script src=\"";
-        // line 42
+            <script src=\"";
+        // line 167
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/libs/jquery/dist/jquery.min.js\"></script>
-    <script src=\"";
-        // line 43
+            <script src=\"";
+        // line 168
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
-    <!--<script src=\"assets/js/bookmarks.js\"></script>-->
-</div>
+        </div>
 </body>
 
 </html>";
@@ -130,12 +245,12 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         echo "Pocetna";
     }
 
-    // line 32
+    // line 54
     public function block_main($context, array $blocks = [])
     {
-        // line 33
-        echo "
-            ";
+        // line 55
+        echo "        
+        ";
     }
 
     public function getTemplateName()
@@ -150,7 +265,7 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 
     public function getDebugInfo()
     {
-        return array (  137 => 33,  134 => 32,  128 => 6,  118 => 43,  114 => 42,  110 => 41,  102 => 35,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  79 => 23,  75 => 22,  68 => 18,  64 => 17,  54 => 10,  49 => 8,  44 => 6,  37 => 1,);
+        return array (  252 => 55,  249 => 54,  243 => 6,  234 => 168,  230 => 167,  226 => 166,  115 => 57,  113 => 54,  77 => 21,  64 => 11,  60 => 10,  56 => 9,  52 => 8,  48 => 7,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()

@@ -4,11 +4,6 @@
     class BasicFingerprintProvider implements FingerprintProvider {
         private $data;
 
-        public function __construct(array $data) {
-            $this->data = $data;
-        }
-
-
         public function provideFingerprint(): string {
             $userAgent = filter_var($this->data['HTTP_USER_AGENT'] ?? '', FILTER_SANITIZE_STRING);
             $ipAddress = filter_var($this->data['REMOTE_ADDR'] ?? '', FILTER_SANITIZE_STRING);

@@ -7,11 +7,8 @@
         const DATABASE_PASS = '';
         const DATABASE_NAME = 'library';
 
-        const SESSION_STORAGE = '\\App\\Core\\Session\\FileSessionStorage';
-        const SESSION_STORAGE_DATA = ['./sessions/' ]; 
-        const SESSION_LIFETIME = 3600;
+        const SESSION_STORAGE_CLASS = '\\App\\Core\\Session\\FileSessionStorage';
+        const SESSION_STORAGE_ARGUMENTS = [ './sessions/' ]; # !!!
 
-        const FINGERPRINT_PROVIDER_FACTORY = '\\App\\Core\\Fingerprint\\BasicFingerprintProviderFactory';
-        const FINGERPRINT_PROVIDER_METHOD  = 'getInstance';
-        const FINGERPRINT_PROVIDER_ARGS    = [ 'SERVER' ];
+        const FINGERPRINT_PROVIDER_CLASS = '\\App\\Core\\Fingerprint\\BasicFingerprintProvider';
     }

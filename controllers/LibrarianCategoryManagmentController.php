@@ -1,7 +1,9 @@
 <?php
     namespace App\Controllers;
 
-    class UserCategoryManagmentController extends \App\Core\Role\UserRoleController {
+    use App\Core\Role\LibrarianRoleController;
+
+    class LibrarianCategoryManagmentController extends LibrarianRoleController {
 
        public function categories() {
 

@@ -1,0 +1,95 @@
+body{
+  margin:0;
+  padding: 0;
+  background:#f4f4f4;
+}
+
+.container-fluid {
+  padding: 0!important;
+}
+/* Navbar */
+.navbar{
+  min-height: 33px !important;
+  margin-bottom:0;
+  border-radius:0;
+}
+#main{
+  margin-bottom: 100px;
+}
+.logo{
+  padding-right: 10px;
+}
+#drugi_meni i{
+  color: #fff;
+}
+
+#glavni-nav {
+  background-color: #e74c3c;
+  border-color: #c0392b;
+}
+#glavni-nav .navbar-brand {
+  color: #fff;
+}
+
+#glavni-nav .navbar-nav > li > a {
+  color: #fff;
+}
+#glavni-nav .navbar-nav > li > a:hover,
+#glavni-nav .navbar-nav > li > a:focus {
+  color: #ffbbbc;
+}
+#glavni-nav .navbar-nav > .active > a,
+#glavni-nav .navbar-nav > .active > a:hover,
+#glavni-nav .navbar-nav > .active > a:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+
+#drugi_nav{
+  background-color: #333333;
+}
+
+#drugi_nav i{
+  color: #fff;
+}
+.dash-box{
+  text-align:center;
+}
+
+#login{
+  margin-top:50px;
+}
+
+/* Custom */
+.main-color-bg{
+  background-color: #e74c3c !important;
+  border-color: #c0392b !important;
+  color:#ffffff !important;
+}
+
+/* Footer */
+#footer{
+  background:#333333;
+  color:#ffffff;
+  text-align:center;
+  padding:30px;
+  margin-top:30px;
+}
+
+
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffbbbc;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffbbbc;
+    background-color: #c0392b;
+  }
+}
