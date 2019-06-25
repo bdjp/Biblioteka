@@ -70,3 +70,28 @@ footer {
     font-size: 20px;
     
 }
+
+/* librarian/dashboard */ 
+.dugme {
+    
+    padding: calc(23vh - 50px) 0;
+    position: relative;
+}
+.dugme a {
+    padding-top: 15vh;
+    font-size: 3vh;
+    position: absolute;
+    border: 0px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+    background-color: #e74c3c!important;
+}
+  
+/* Scale up the box */
+.dugme:hover {
+    transform: scale(1.01, 1.01);
+}

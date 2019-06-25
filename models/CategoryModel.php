@@ -14,5 +14,8 @@
             ];
         }
 
-       
+        public function getAllByCategoryId(int $categoryId): array {
+            return $this->getAllByFieldName('category_id', $categoryId);
+        
+        }
     }

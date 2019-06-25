@@ -7,8 +7,8 @@
     <link rel="icon" type="image/png" href="{{ BASE }}assets/img/banner.png">
     <link rel="stylesheet" href="{{ BASE }}assets/libs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ BASE }}assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="{{ BASE }}assets/css/main.css">
-    <link rel="stylesheet" href="{{ BASE }}assets/css/style.css">
+    <link rel="stylesheet" href="{{ BASE }}assets/css/main.css?ts=<?=time()?>" >
+    <link rel="stylesheet" href="{{ BASE }}assets/css/style.css?ts=<?=time()?>">
 </head>
 
 <body>
@@ -61,111 +61,12 @@
             </footer>
 
         </div> <!-- Container -->
-
-
-
-
-
-
-
-        
-
-
-        <header id="header">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </header>
-
-
-
-        <section id="main">
-            <div class="container">
-                <div class="row">
-                    <!-- Categories -->
-                    <div class="col-md-3">
-                        <div class="list-group">
-                            <a href="index.html" class="list-group-item active main-color-bg">
-                                <span aria-hidden="true"><i class="fas fa-book"></i></span> Kategorije
-                            </a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Autobiografija <span
-                                    class="badge">4</span></a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Drama <span
-                                    class="badge">12</span></a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Klasisci <span
-                                    class="badge">3</span></a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Komedija <span
-                                    class="badge">24</span></a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Naucna fantastika <span
-                                    class="badge">10</span></a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Poezija <span
-                                    class="badge">12</span></a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Pripovetka <span
-                                    class="badge">16</span></a>
-                            <a href="#" class="list-group-item"><span aria-hidden="true"></span> Roman <span
-                                    class="badge">32</span></a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-9">
-                        <!-- Popular Books -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading main-color-bg">
-                                <h3 class="panel-title">Popularne knjige</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="col-md-3">
-                                    <div class="well dash-box">
-                                        <img src="img/ivo-andric1.jpg" alt="ivoandric" class="img-thumbnail">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="well dash-box">
-                                        <img src="img/ivo-andric1.jpg" alt="ivoandric" class="img-thumbnail">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="well dash-box">
-                                        <img src="img/ivo-andric1.jpg" alt="ivoandric" class="img-thumbnail">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="well dash-box">
-                                        <img src="img/ivo-andric1.jpg" alt="ivoandric" class="img-thumbnail">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Popular Books -->
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer id="footer">
-            <p>Copyright Bikovi, &copy; 2019</p>
-        </footer>
-
-
-        
+     
 
             <script> const BASE = '{{ BASE }}';</script>
             <script src="{{ BASE }}assets/libs/jquery/dist/jquery.min.js"></script>
             <script src="{{ BASE }}assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+            <script src="{{ BASE }}assets/js/books.js"></script>
         </div>
 </body>
 

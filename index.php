@@ -147,8 +147,8 @@
     //Poziv apija
     if($controllerInstance instanceof ApiController) {
         ob_clean();
-        header('Content-type: application/json; charset=utf8');
-        header('Access-Controll-Allow-Origin: *');
+        header('Content-type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($data);
         exit;
     }

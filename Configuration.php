@@ -11,4 +11,6 @@
         const SESSION_STORAGE_ARGUMENTS = [ './sessions/' ]; # !!!
 
         const FINGERPRINT_PROVIDER_CLASS = '\\App\\Core\\Fingerprint\\BasicFingerprintProvider';
+
+        const UPLOAD_DIR = 'assets/uploads/';
     }

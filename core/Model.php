@@ -1,27 +1,21 @@
 <?php
     namespace App\Core;
 
+    use \App\Core\DatabaseConnection;
+    use \PDO;
+
     abstract class Model {
-        private $dbc;
+        private $dbCon;
 
-        final public function __construct(DatabaseConnection &$dbc) {
-            $this->dbc = $dbc;
+        public function __construct(DatabaseConnection &$dbCon) {
+            $this->dbCon = $dbCon;
         }
 
-        //doprema informaciju o spisku svih onih polja koja postoje u tabeli i koja mozemo da menjamo
-        // kao i informacija sta znaci validna vrednost za to polje
-
-        protected function getFields(): array {
-            return [];
+        protected function &getDatabaseConnection(): DatabaseConnection {
+            return $this->dbCon;
         }
 
-
-        final protected function getConnection() {
-            return $this->dbc->getConnection();
-        }
-
-        final private function getTableName(): string {
-            /* - novi nacin - tair vezbe */
+        final protected function getTableName(): string {
             $imeKlase = static::class;
 
             $matches = [];
@@ -36,156 +30,234 @@
             $tableName = \substr($malimSlovima, 1);
 
             return $tableName;
-
-           /* stari nacin - tair yt
-            $matches= [];
-            preg_match('|^.*\\\((?:[A-Z][a-z]+)+)Model$|', static::class, $matches);
-            return substr(\strtolower(\preg_replace('|[A-Z]|', '_$0', $matches[1] ?? '')), 1);*/
         }
 
-        final private function getPrimaryKeyName(): string {
-            return $this->getTableName() . '_id';
-        }
-
-
-
-        final public function getById(int $id)  {
+        public function getAll(): array {
             $tableName = $this->getTableName();
-            $sql = 'SELECT * FROM ' . $tableName .' WHERE ' . $tableName . '_id = ?;';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute([$id]);
-
-            $item = NULL;
-            if($res) {
-                $item = $prep->fetch(\PDO::FETCH_OBJ);
-            }
-            return $item;
-        }
-
-        final public function getAll(): array {
-            $tableName = $this->getTableName();
-            $sql = 'SELECT * FROM ' . $tableName . '; ';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute();
-
+            $pdo = $this->dbCon->getConnection();
+            $sql = 'SELECT * FROM ' . $tableName .';';
+            $prep = $pdo->prepare($sql);
             $items = [];
-            if($res) {
-                $items = $prep->fetchAll(\PDO::FETCH_OBJ);
+
+            if ($prep) {
+                $res = $prep->execute();
+
+                if ($res) {
+                    $items = $prep->fetchAll(PDO::FETCH_OBJ);
+                }
             }
+
             return $items;
         }
 
-        final private function isFieldValueValid(string $fieldName, $fieldValue): bool {
-            $fields = $this->getFields();
-            $supportedFieldNames = array_keys($fields);
+        public function getById(int $id): ?\stdClass {
+            $tableName = $this->getTableName();
+            $pdo = $this->dbCon->getConnection();
+            $sql = 'SELECT * FROM ' . $tableName .' WHERE ' . $tableName .'_id = ?;';
+            $prep = $pdo->prepare($sql);
+            $item = null;
 
-            if(!\in_array($fieldName, $supportedFieldNames )) {
+            if ($prep) {
+                $prep->execute( [ $id ] );
+    
+                $item = $prep->fetch(PDO::FETCH_OBJ);
+
+                if (!$item) {
+                    $item = null;
+                }
+            }
+
+            return $item;
+        }
+
+        final protected function isFieldNameValid(string $fieldName) {
+            return boolval(preg_match('#^[a-z]+[a-z0-9_]*[a-z0-9]$#', $fieldName));
+        }
+
+        public function getAllByFieldName(string $fieldName, $value) {
+            if (!$this->isFieldNameValid($fieldName)) {
+                throw new \Exception('Ime polja nije ispravno!');
+            }
+
+            $tableName = $this->getTableName();
+            $pdo = $this->dbCon->getConnection();
+            $sql = 'SELECT * FROM ' . $tableName . ' WHERE ' . $fieldName . ' = ?;';
+            $prep = $pdo->prepare($sql);
+            $items = [];
+
+            if ($prep) {
+                $prep->execute( [ $value ] );
+
+                $items = $prep->fetchAll(PDO::FETCH_OBJ);
+
+                if (!$items) {
+                    $items = [];
+                }
+            }
+
+            return $items;
+        }
+
+        public function getByFieldName(string $fieldName, $value) {
+            if (!$this->isFieldNameValid($fieldName)) {
+                throw new \Exception('Ime polja nije ispravno!');
+            }
+
+            $tableName = $this->getTableName();
+            $pdo = $this->dbCon->getConnection();
+            $sql = 'SELECT * FROM ' . $tableName . ' WHERE ' . $fieldName . ' = ?;';
+            $prep = $pdo->prepare($sql);
+            $item = null;
+
+            if ($prep) {
+                $prep->execute( [ $value ] );
+
+                $item = $prep->fetch(PDO::FETCH_OBJ);
+
+                if (!$item) {
+                    $item = null;
+                }
+            }
+
+            return $item;
+        }
+
+        protected function getFields() {
+            return [];
+        }
+
+        final protected function isFieldNameSupported($name) {
+            if (!$this->isFieldNameValid($name)) {
                 return false;
             }
 
-            return $fields[$fieldName]->isValid($fieldValue);
+            $supportedFields = $this->getFields();
 
-        }
-
-
-        final public function getByFieldName(string $fieldName, $value) {
-            if(!$this->isFieldValueValid($fieldName, $value)) {
-                throw new Exception ('Invalid field name or value: '. $fieldName);
-            }
-
-            $tableName = $this->getTableName();
-            $sql = 'SELECT * FROM ' . $tableName .' WHERE ' . $fieldName . ' = ?;';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute([$value]);
-
-            $item = NULL;
-            if($res) {
-                $item = $prep->fetch(\PDO::FETCH_OBJ);
-            }
-            return $item;
-        }
-
-        final public function getAllByFieldName(string $fieldName, $value)  {
-            if(!$this->isFieldValueValid($fieldName, $value)) {
-                throw new \Exception ('Invalid field name or value: '. $fieldName);
-            }
-
-            $tableName = $this->getTableName();
-            $sql = 'SELECT * FROM ' . $tableName .' WHERE ' . $fieldName . '= ?;';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute([$value]);
-
-            $items = [];
-            if($res) {
-                $items = $prep->fetchAll(\PDO::FETCH_OBJ);
-            }
-            return $items;
-        }
-
-
-        final private function checkFieldList(array $data) {
-            $fields = $this->getFields();
-
-            $supportedFieldNames = array_keys($fields);
-            $requestedFieldNames = array_keys($data);
-
-            foreach ($requestedFieldNames as $requestedFieldName) {
-                if(!\in_array($requestedFieldName, $supportedFieldNames)) {
-                    throw new \Exception('Field ' . $requestedFieldName . ' is not supported!');
-                }
-
-                if( !$fields[$requestedFieldName]->isEditable()) {
-                    throw new \Exception('Field ' . $requestedFieldName . ' is not editable!');
-                }
-
-                if( !$fields[$requestedFieldName]->isValid($data[$requestedFieldName])) {
-                    throw new \Exception('The value for the field ' . $requestedFieldName . ' is not valid!');
+            foreach ($supportedFields as $supportedFieldName => $supportedField) {
+                if ($supportedFieldName == $name) {
+                    return true;
                 }
             }
+
+            return false;
         }
 
         final public function add(array $data) {
-            $this->checkFieldList($data);
+            $supportedFields = $this->getFields();
+            $requestedFields = array_keys($data);
+
+            foreach ($requestedFields as $requestedField) {
+                if (!$this->isFieldNameSupported($requestedField)) {
+                    throw new \Exception('Field name ' . $requestedField . ' is not supported in this model.');
+                }
+
+                $requestedValue = $data[$requestedField];
+
+                if (!$supportedFields[$requestedField]->isEditable()) {
+                    throw new \Exception('Field ' . $requestedField . ' is not editable.');
+                }
+
+                if (!$supportedFields[$requestedField]->isFieldValueValid($requestedValue)) {
+                    throw new \Exception('The value for the field ' . $requestedField . ' is not valid.');
+                }
+            }
 
             $tableName = $this->getTableName();
-            $sqlFieldNames = implode(', ', array_keys($data));
-            $questionMarks = str_repeat('?,', \count($data));
-            $questionMarks = substr($questionMarks, 0, -1);
-            $sql = "INSERT INTO {$tableName} ({$sqlFieldNames}) VALUES ({$questionMarks});";
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            $res = $prep->execute(array_values($data));
 
-            if(!$res) {
+            foreach ($requestedFields as &$requestedField) {
+                $requestedField = "`{$requestedField}`";
+            }
+
+            $fieldNamesForSQL = implode(', ', $requestedFields);
+            $placeHolders = str_repeat('?,', count($requestedFields));
+            $placeHolders = \substr($placeHolders, 0, strlen($placeHolders)-1);
+
+            $sql = "INSERT `{$tableName}` ({$fieldNamesForSQL}) VALUES ({$placeHolders});";
+
+            $pdo = $this->dbCon->getConnection();
+            $prep = $pdo->prepare($sql);
+
+            if (!$prep) {
                 return false;
             }
-            return $this->dbc->getConnection()->lastInsertId();
-        }
-        
 
-        final public function editById(int $id, array $data) {
-            $this->checkFieldList($data);
+            $res = $prep->execute( array_values($data) );
 
-            $tableName = $this->getTableName();
-            $editlist = [];
-            foreach (array_keys($data) as $fieldName => $value) {
-                $editlist[] = "{$fieldName} =?";
-                $values[] = $value;
+            if (!$res) {
+                return false;
             }
-            $editString = implode(', ', $editlist);
-            $values[] = $id;
 
-            $sql = "UPDATE {$tableName} SET {$editString} WHERE {$tableName}_id = ?;";
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            return $prep->execute($values);
+            return $pdo->lastInsertId();
         }
-        
 
-        final public function deleteById(int $id) {
+        /**
+         * $auctionModel = new AuctionModel(....);
+         * $auctionModel->editById(11, [
+         *     'title'       => 'Novi naziv',
+         *     'ends_at'     => '2019-04-11 10:00:00',
+         *     'category_id' => 4
+         * ]);
+         *
+         * # UPDATE `auction` SET title = ?, ends_at = ?, category_id = ? WHERE auction_id = ?;
+         * # [ 'Novi naziv', '2019-04-11 10:00:00', 4, 11 ]
+         */
+        final public function editById($id, array $data) {
+            $supportedFields = $this->getFields();
+            $requestedFields = array_keys($data);
+
+            foreach ($requestedFields as $requestedField) {
+                if (!$this->isFieldNameSupported($requestedField)) {
+                    throw new \Exception('Field name ' . $requestedField . ' is not supported in this model.');
+                }
+
+                $requestedValue = $data[$requestedField];
+
+                if (!$supportedFields[$requestedField]->isEditable()) {
+                    throw new \Exception('Field ' . $requestedField . ' is not editable.');
+                }
+
+                if (!$supportedFields[$requestedField]->isFieldValueValid($requestedValue)) {
+                    throw new \Exception('The value for the field ' . $requestedField . ' is not valid.');
+                }
+            }
+
             $tableName = $this->getTableName();
-            $sql = 'DELETE  FROM ' . $tableName .' WHERE ' . $tableName . '_id = ?;';
-            $prep = $this->dbc->getConnection()->prepare($sql);
-            return $prep->execute([$id]);
 
-            
+            $nizParova = [];
+
+            foreach ($requestedFields as $requestedFieldName) {
+                $nizParova[] = "`{$requestedFieldName}` = ?";
+            }
+
+            $sqlPartNames = implode(', ', $nizParova);
+
+            $sql = "UPDATE `{$tableName}` SET {$sqlPartNames} WHERE `{$tableName}_id` = ?;";
+
+            $pdo = $this->dbCon->getConnection();
+            $prep = $pdo->prepare($sql);
+
+            if (!$prep) {
+                return false;
+            }
+
+            $vrednostZaUpitnike = array_values($data);
+            $vrednostZaUpitnike[] = $id;
+
+            return $prep->execute( $vrednostZaUpitnike );
+        }
+
+        final public function deleteById($id) {
+            $tableName = $this->getTableName();
+
+            $sql = "DELETE FROM `{$tableName}` WHERE `{$tableName}_id` = ?;";
+
+            $pdo = $this->dbCon->getConnection();
+            $prep = $pdo->prepare($sql);
+
+            if (!$prep) {
+                return false;
+            }
+
+            return $prep->execute( [ $id ] );
         }
     }

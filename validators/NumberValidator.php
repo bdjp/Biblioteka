@@ -1,71 +1,102 @@
 <?php
     namespace App\Validators;
 
-    use \App\Core\Validator;
+    use App\Core\Validator;
 
     class NumberValidator implements Validator {
         private $isSigned;
-        private $integerLength;
         private $isReal;
+        private $maxIntegerDigits;
         private $maxDecimalDigits;
 
         public function __construct() {
-            $this->isSigned         = false;
-            $this->integerLength    = false;
-            $this->isReal           = 10;
-            $this->maxDecimalDigits = 0;
-
+            $this->isSigned = true;
+            $this->isReal   = true;
+            $this->maxIntegerDigits = 10;
+            $this->maxDecimalDigits = 2;
         }
 
-        public function &setInteger() : NumberValidator {
+        public function &setInteger(): NumberValidator {
             $this->isReal = false;
+            $this->maxDecimalDigits = 0;
             return $this;
         }
-
-        public function &setDecimal() : NumberValidator {
+        
+        public function &setReal(): NumberValidator {
             $this->isReal = true;
             return $this;
         }
 
-        public function &setSigned() : NumberValidator {
-            $this->isSigned = true;
-            return $this;
-        }
-
-        public function &setUnSigned() : NumberValidator {
+        public function &setUnsigned(): NumberValidator {
             $this->isSigned = false;
             return $this;
         }
 
-        public function &setIntegerLength(int $length) : NumberValidator {
-            $this->integerLength = max(1, $length);
+        public function &setSigned(): NumberValidator {
+            $this->isSigned = true;
             return $this;
         }
 
-        public function &setmaxDecimalDigits(int $maxDigits) : NumberValidator {
-            $this->maxDecimalDigits = max(0, $maxDigits);
+        public function &setIntegerLength(int $lenght): NumberValidator {
+            $this->maxIntegerDigits = max(1, $lenght);
+            return $this;
+        }
+
+        public function &setMaxDecimalDigits(int $lenght): NumberValidator {
+            $this->maxDecimalDigits = max(0, $lenght);
+            return $this;
+        }
+
+        public function &setMinIsbnLength(int $length) : NumberValidator {
+            $this->minIntegerDigits = min(23, $length);
             return $this;
         }
 
 
 
-
-        public function isValid(string $value): bool {
-            $pattern = '/^';
-
-            if($this->isSigned === true) {
-                $pattern .= '\-?';
+        public function isValid(string $value) {
+            if ($this->isSigned == false) {
+                if ($value < 0) {
+                    return false;
+                }
             }
 
-            $pattern .= '[1-9][0-9]{0,' . ( $this->integerLength-1) . '}';
+            if ($this->isReal == false) {
+                $value = floatval($value);
 
-            if ($this->isReal === true) {
-                $pattern .= '\.[0-9]{0,' . $this->maxDecimalDigits . '}';
+                $ostatak = $value % 1.;
 
+                if ($ostatak != 0) {
+                    return false;
+                }
             }
 
-            $pattern .='$/';
+            $ceoDeo = strval(intval($value));
 
-            return \boolval(\preg_match($pattern, $value));
+            if (strlen($ceoDeo) > $this->maxIntegerDigits) {
+                return false;
+            }
+
+
+            $brojStr = strval(floatval($value));
+
+            $deloviBroja = explode('.', $brojStr);
+
+            if (!isset($deloviBroja[1])) {
+                return true;
+            }
+
+            $decimalniDeo = $deloviBroja[1];
+
+            if (strlen($decimalniDeo) > $this->maxDecimalDigits) {
+                return false;
+            }
+            
+            return true;
+            
         }
+
+
+
+       
     }

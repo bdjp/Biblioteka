@@ -6,7 +6,7 @@
          public function show($id) {
             $categoryModel = new \App\Models\CategoryModel($this->getDatabaseConnection());
             $category = $categoryModel->getById($id);
-             $this->set('category', $category);
+            $this->set('category', $category);
 
 
             $bookModel = new \App\Models\BookModel($this->getDatabaseConnection());

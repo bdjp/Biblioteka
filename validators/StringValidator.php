@@ -24,9 +24,16 @@
         }
 
         public function isValid(string $value): bool {
-            $len = strlen($value);
-            return $this->minLength <= $len && $len <= $this->maxLength;
+            $length = strlen($value);
 
+            if ($length < $this->minLength) {
+                return false;
+            }
+
+            if ($length > $this->maxLength) {
+                return false;
+            }
+
+            return true;
         }
-
     }

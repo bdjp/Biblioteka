@@ -23,6 +23,13 @@
         Route::get('|^librarian/categories/add/?$|',                    'LibrarianCategoryManagment',  'getAdd'),
         Route::post('|^librarian/categories/add/?$|',                   'LibrarianCategoryManagment',  'postAdd'),
 
+        Route::get('|^librarian/books/?$|',                             'LibrarianBookManagment',       'books'),
+        Route::get('|^librarian/book/edit/?$|',                         'LibrarianBookManagment',       'getEdit'),
+        Route::get('|^librarian/book/edit/([0-9]+)/?$|',                'LibrarianBookManagment',       'getEdit'),
+        Route::post('|^librarian/book/edit/([0-9]+)/?$|',               'LibrarianBookManagment',       'postEdit'),
+      
+        Route::post('|^librarian/book/add/?$|',                         'LibrarianBookManagment',       'postAdd'),
+        Route::post('|^librarian/book/search/?$|',                      'LibrarianBookManagment',       'postSearch'),
 
         Route::get('#^.*$#',                                            'Main',                   'home')
     ];

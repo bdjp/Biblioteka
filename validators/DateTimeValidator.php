@@ -4,54 +4,57 @@
     use \App\Core\Validator;
 
     class DateTimeValidator implements Validator {
-        private $isDateAllowed;
-        private $isTimeAllowed;
+        private $allowedDate;
+        private $allowedTime;
 
         public function __construct() {
-            $this->isDateAllowed    = true;
-            $this->isTimeAllowed    = true;
-
+            $this->allowedDate = true;
+            $this->allowedTime = true;
         }
 
         public function &allowDate(): DateTimeValidator {
-            $this->isDateAllowed = true;
+            $this->allowedDate = true;
             return $this;
         }
 
         public function &allowTime(): DateTimeValidator {
-            $this->isTimeAllowed = true;
+            $this->allowedTime = true;
             return $this;
         }
 
         public function &disallowDate(): DateTimeValidator {
-            $this->isDateAllowed = false;
+            $this->allowedDate = false;
+
+            if ($this->allowedTime == false) {
+                $this->allowedTime = true;
+            }
+
             return $this;
         }
 
         public function &disallowTime(): DateTimeValidator {
-            $this->isTimeAllowed = false;
+            $this->allowedTime = false;
+
+            if ($this->allowedDate == false) {
+                $this->allowedDate = true;
+            }
+
             return $this;
         }
 
-        public function isValid(string $value): bool {
-            $pattern = '/^';
+        public function isValid(string $value) {
+            $components = [];
 
-            if ($this->isDateAllowed === true) {
-                $pattern .= '[0-9]{4}\-[0-9]{2}\-[0-9]{2}';
+            if ($this->allowedDate) {
+                $components[] = '[0-9]{4}-[0-9]{2}-[0-9]{2}';
             }
 
-            if ($this->isDateAllowed === true && $this->isTimeAllowed === true) {
-                $pattern .= ' ';
+            if ($this->allowedTime) {
+                $components[] = '[0-9]{2}:[0-9]{2}:[0-9]{2}';
             }
 
-            if ($this->isTimeAllowed === true) {
-                $pattern .= '[0-9]{2}:[0-9]{2}:[0-9]{2}';
-            }
+            $pattern = \implode(' ', $components);
 
-            $pattern .= '$/';
-
-            
-            return \boolval(\preg_match($pattern, $value));
+            return \preg_match('/^' . $pattern . '$/', $value);
         }
-
     }

@@ -9,8 +9,11 @@
 
             $categoryModel = new \App\Models\CategoryModel($this->getDatabaseConnection());
             $categories = $categoryModel->getAll();
-    
             $this->set('categories', $categories);
+
+            $bookModel = new \App\Models\BookModel($this->getDatabaseConnection());
+            $knjige = $bookModel->getAll();
+            $this->set('knjige' , $knjige);
        }
 
        public function getEdit($categoryId) {

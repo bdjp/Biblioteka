@@ -58,11 +58,11 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
     <link rel=\"stylesheet\" href=\"";
         // line 10
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/css/main.css\">
+        echo "assets/css/main.css?ts=<?=time()?>\" >
     <link rel=\"stylesheet\" href=\"";
         // line 11
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/css/style.css\">
+        echo "assets/css/style.css?ts=<?=time()?>\">
 </head>
 
 <body>
@@ -119,120 +119,24 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
             </footer>
 
         </div> <!-- Container -->
-
-
-
-
-
-
-
-        
-
-
-        <header id=\"header\">
-            <div class=\"row\">
-                <div class=\"col-md-12\">
-                    <a href=\"#\" target=\"_blank\"><i class=\"fab fa-facebook-square\"></i></a>
-                    <a href=\"#\" target=\"_blank\"><i class=\"fab fa-instagram\"></i></a>
-                    <a href=\"#\" target=\"_blank\"><i class=\"fab fa-youtube\"></i></a>
-                </div>
-            </div>
-        </header>
-
-
-
-        <section id=\"main\">
-            <div class=\"container\">
-                <div class=\"row\">
-                    <!-- Categories -->
-                    <div class=\"col-md-3\">
-                        <div class=\"list-group\">
-                            <a href=\"index.html\" class=\"list-group-item active main-color-bg\">
-                                <span aria-hidden=\"true\"><i class=\"fas fa-book\"></i></span> Kategorije
-                            </a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Autobiografija <span
-                                    class=\"badge\">4</span></a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Drama <span
-                                    class=\"badge\">12</span></a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Klasisci <span
-                                    class=\"badge\">3</span></a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Komedija <span
-                                    class=\"badge\">24</span></a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Naucna fantastika <span
-                                    class=\"badge\">10</span></a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Poezija <span
-                                    class=\"badge\">12</span></a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Pripovetka <span
-                                    class=\"badge\">16</span></a>
-                            <a href=\"#\" class=\"list-group-item\"><span aria-hidden=\"true\"></span> Roman <span
-                                    class=\"badge\">32</span></a>
-                        </div>
-                    </div>
-
-                    <div class=\"col-md-9\">
-                        <!-- Popular Books -->
-                        <div class=\"panel panel-default\">
-                            <div class=\"panel-heading main-color-bg\">
-                                <h3 class=\"panel-title\">Popularne knjige</h3>
-                            </div>
-                            <div class=\"panel-body\">
-                                <div class=\"col-md-3\">
-                                    <div class=\"well dash-box\">
-                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                                <div class=\"col-md-3\">
-                                    <div class=\"well dash-box\">
-                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                                <div class=\"col-md-3\">
-                                    <div class=\"well dash-box\">
-                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                                <div class=\"col-md-3\">
-                                    <div class=\"well dash-box\">
-                                        <img src=\"img/ivo-andric1.jpg\" alt=\"ivoandric\" class=\"img-thumbnail\">
-                                        <h3>Na drini cuprija</h3>
-                                        <p>Ivo Andric</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Popular Books -->
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer id=\"footer\">
-            <p>Copyright Bikovi, &copy; 2019</p>
-        </footer>
-
-
-        
+     
 
             <script> const BASE = '";
-        // line 166
+        // line 66
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "';</script>
             <script src=\"";
-        // line 167
+        // line 67
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/libs/jquery/dist/jquery.min.js\"></script>
             <script src=\"";
-        // line 168
+        // line 68
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
+            <script src=\"";
+        // line 69
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/js/books.js\"></script>
         </div>
 </body>
 
@@ -265,7 +169,7 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 
     public function getDebugInfo()
     {
-        return array (  252 => 55,  249 => 54,  243 => 6,  234 => 168,  230 => 167,  226 => 166,  115 => 57,  113 => 54,  77 => 21,  64 => 11,  60 => 10,  56 => 9,  52 => 8,  48 => 7,  44 => 6,  37 => 1,);
+        return array (  156 => 55,  153 => 54,  147 => 6,  138 => 69,  134 => 68,  130 => 67,  126 => 66,  115 => 57,  113 => 54,  77 => 21,  64 => 11,  60 => 10,  56 => 9,  52 => 8,  48 => 7,  44 => 6,  37 => 1,);
     }
 
     public function getSourceContext()

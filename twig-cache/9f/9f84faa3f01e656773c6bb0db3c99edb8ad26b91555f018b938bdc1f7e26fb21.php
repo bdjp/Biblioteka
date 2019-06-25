@@ -45,7 +45,45 @@ class __TwigTemplate_3eabcff030e7a2ff1484bf7424b1df13c5ac7e29e5f02925a2cdbbc9bf0
     {
         // line 4
         echo "    <div>
-        Samo za bibliotekare
+            <div class=\"container\">
+                    <div class=\"row text-center\">
+                        <div class=\"col-md-12 my-4 naslov\">
+                              <h1>Opcije dostupne prijavljenim korisnicima</h1>
+                        </div>
+                    </div>  
+                        <div class=\"row dashboard text-center mb-5\">
+                            <div class=\"col mx-1 box dugme border border-success\">
+                                <a href=\"";
+        // line 13
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "librarian/categories/\" 
+                                class=\"btn btn-primary text-center\">
+                                <i class=\"fas fa-user fa-lg\"></i><br>   
+                                Kategorije
+                                </a>
+                            </div>
+                            <div class=\"col mx-1 dugme border border-success\">
+                                    <a href=\"";
+        // line 20
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "librarian/books/\"
+                                     class=\"btn btn-primary\">
+                                     <i class=\"fas fa-plus fa-lg\"></i><br>    
+                                     Knjige
+                                    </a>
+                            </div>
+                            <div class=\"col mx-1 box dugme border border-success\">
+                                <a href=\"";
+        // line 27
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "librarian/myads/\" 
+                                class=\"btn btn-primary text-center\">
+                                <i class=\"fas fa-paw fa-lg\"></i><br> 
+                                Zaduzenja
+                                </a>
+                            </div>
+                            
+                        </div>
     </div>
 
 ";
@@ -63,7 +101,7 @@ class __TwigTemplate_3eabcff030e7a2ff1484bf7424b1df13c5ac7e29e5f02925a2cdbbc9bf0
 
     public function getDebugInfo()
     {
-        return array (  47 => 4,  44 => 3,  34 => 1,);
+        return array (  78 => 27,  68 => 20,  58 => 13,  47 => 4,  44 => 3,  34 => 1,);
     }
 
     public function getSourceContext()
