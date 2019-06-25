@@ -1,0 +1,149 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<div class="row" id="meni1">
+    <div class="container1 col-md-4">  <button class="btn btn-block tablink tablinks " onclick="openPage('Home', this, 'rgb(240, 106, 106)')" id="defaultOpen">Knjige</button></div> 
+    <div class="container1 col-md-4">   <button class="btn btn-block tablink tablinks" onclick="openPage('News', this, 'rgb(180, 240, 106)')" >Dodaj knjigu</button></div> 
+    <div class="container1 col-md-4">   <button class="btn btn-block tablink tablinks" onclick="openPage('Contact', this, 'rgb(106, 131, 240)')">Izmeni knjigu</button></div> 
+    
+</div>
+<div id="Home" class="tabcontent">
+        <ul>
+                <div class="row justify-content-around kolona py-5">
+                        {% for book in books %} 
+                  <div class="col-md-3 px-5 mb-5">
+                      <div class="card text-center text-white bg-warning">
+                          <div class="card-header"><h3>{{ book.title|escape }}</h3> </div>
+                          <img id="slika-oglas" src="{{ BASE }}assets/uploads/{{ oglas.ad_id }}.jpg" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title"><b class="float-left">ISBN:</b> <b class="float-right"> {{ book.isbn }}</b></h5><br>
+                            <h5 class="card-title"><b class="float-left">Datum objave:</b> <b class="float-right">{{ book.publication_date|date('j. n. Y.') }}</b></h5>
+                         
+                          </div>
+                          <div class="card-footer">
+                              <a href="{{ BASE }}book/{{book.book_id}}"> <button type="button" class="btn btn-success btn-block dugme-oglas">Vidi knjigu </button></a>
+                          </div>
+                        </div>
+                  </div>
+                  {% endfor %}
+                </div>
+            
+                <a href="{{ BASE }}librarian/book/add/"><button class="btn btn-success btn-block" type="button"> Dodaj knjigu</button></a>
+                <a href="{{ BASE }}librarian/book/edit/"><button class="btn btn-success btn-block" type="button"> Izmeni knjigu</button></a>
+                <a href="{{ BASE }}"><button class="btn btn-success btn-block" type="button"> Izbrisi knjigu</button></a>
+    
+        </ul>
+</div>
+
+<div id="News" class="tabcontent">
+        <div class="col col-12 col-md-6 offset-md-3 py-5">
+                <div class="card">
+                    <div class="card-header">
+                            <i class="fas fa-book"></i>
+                        Dodavanje knjige
+                    </div>
+        
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data" action="{{ BASE }}librarian/book/add">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-heading"></i>
+                                        </span>
+                                    </div>
+        
+                            <input type="text" id="title" name="title" class="form-control"
+                                required   placeholder="Unesite naslov knjige.">
+                                </div>
+                            </div>
+        
+                            
+        
+                            <div class="row">
+                                <div class="form-group col col-12 col-md-4">
+                                    <label for="isbn">ISBN:</label>
+                                    <input type="text" id="isbn" name="isbn"
+                                        class="form-control"
+                                        required placeholder="Unesite svoje ime.">
+                                </div>
+        
+                                <div class="form-group col col-12 col-md-4">
+                                    <label for="published_at">Datom objave:</label>
+                                    <input type="datetime-local" id="published_at" name="published_at"
+                                                required class="form-control" >
+                                </div>
+        
+                                <div class="form-group col col-12 col-md-4">
+                                        <label for="input_surname">Kategorija:</label>
+                                        <select id="category_id" name="category_id" class="form-control">
+                                                {% for category in categories %}
+                                                <option value="{{ category.category_id }}">
+                                                    {{ category.name }}                                                  
+                                                </option>
+                                                {% endfor %}
+                                          </select>
+                                    </div>
+                            </div>
+        
+                            
+                            <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-align-left"></i>
+                                            </span>
+                                        </div>
+                                        
+                                        <textarea class="form-control" required
+                                          name="description"  id="description"
+                                             placeholder="Unesite opis knjige."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="image">Izaberite sliku </label>
+                                        <input class="form-control-file" type="file" required name="image" id="image">
+                                    </div>
+                                    <div class="form-group">      
+                            <button type="submit" class="btn btn-primary col col-12 col-md-4 offset-md-4">
+                                            Dodaj knjigu
+                                    </button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div id="Contact" class="tabcontent">
+        <div class="col col-12 col-md-6 offset-md-3 py-5">
+                <div class="card ">
+                    <div class="card-header">
+                            <i class="fas fa-book"></i>
+                        Izmena knjige
+                    </div>
+        
+                    <div class="card-body">
+                        <form method="post" action="{{ BASE }}librarian/book/search/">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" id="input_username" name="search"
+                                        class="form-control"
+                                        required placeholder="Unesite naslov knjige koju zelite da izmenite.">
+                                        <div class="input-group-append">
+                                                <button type="submit" class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                    </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+</div>
+
+
+{% endblock %}

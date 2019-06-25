@@ -2,7 +2,36 @@
 
 {% block main %}
     <div>
-        Samo za bibliotekare
+            <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-12 my-4 naslov">
+                              <h1>Opcije dostupne prijavljenim korisnicima</h1>
+                        </div>
+                    </div>  
+                        <div class="row dashboard text-center mb-5">
+                            <div class="col mx-1 box dugme border border-success">
+                                <a href="{{ BASE }}librarian/categories/" 
+                                class="btn btn-primary text-center">
+                                <i class="fas fa-user fa-lg"></i><br>   
+                                Kategorije
+                                </a>
+                            </div>
+                            <div class="col mx-1 dugme border border-success">
+                                    <a href="{{ BASE }}librarian/books/"
+                                     class="btn btn-primary">
+                                     <i class="fas fa-plus fa-lg"></i><br>    
+                                     Knjige
+                                    </a>
+                            </div>
+                            <div class="col mx-1 box dugme border border-success">
+                                <a href="{{ BASE }}librarian/myads/" 
+                                class="btn btn-primary text-center">
+                                <i class="fas fa-paw fa-lg"></i><br> 
+                                Zaduzenja
+                                </a>
+                            </div>
+                            
+                        </div>
     </div>
 
 {% endblock %}
