@@ -21,7 +21,7 @@
                          
                           </div>
                           <div class="card-footer">
-                              <a href="{{ BASE }}book/{{book.book_id}}"> <button type="button" class="btn btn-success btn-block dugme-oglas">Vidi knjigu </button></a>
+                              <a href="{{ BASE }}librarian/book/{{book.book_id}}"> <button type="button" class="btn btn-success btn-block dugme-oglas">Vidi knjigu </button></a>
                           </div>
                         </div>
                   </div>
@@ -146,4 +146,6 @@
 </div>
 
 
+{% endblock %}
+{% block dash %} <a class="pl-4" href="{{ BASE }}librarian/dashboard"> Dashboard </a>
 {% endblock %}

@@ -6,6 +6,9 @@
 
         # Student
         Route::get('|^student/dashboard/?$|',                           'StudentDashboard',       'index'),
+        Route::get('|^student/book/search/?$|',                         'StudentDashboard',       'getSearch'),
+        Route::post('|^student/book/search/?$|',                        'StudentDashboard',       'postSearch'),
+        Route::get('|^student/debt/?$|',                                'StudentDashboard',       'debt'),
 
         # Bibliotekar   
         Route::get('|^librarian/dashboard/?$|',                         'LibrarianDashboard',     'index'),
@@ -19,11 +22,12 @@
         # Bibliotekar role:
         Route::get('|^librarian/categories/?$|',                        'LibrarianCategoryManagment',  'categories'),
         Route::get('|^librarian/categories/edit/([0-9]+)/?$|',          'LibrarianCategoryManagment',  'getEdit'),
-        Route::post('|^librarian/categories/edit/([0-9]+)/?$|',         'LibrarianCategoryManagment',  'postEdit'),
+        Route::post('|^librarian/categories/edit/?$|',                  'LibrarianCategoryManagment',  'postEdit'),
         Route::get('|^librarian/categories/add/?$|',                    'LibrarianCategoryManagment',  'getAdd'),
         Route::post('|^librarian/categories/add/?$|',                   'LibrarianCategoryManagment',  'postAdd'),
 
         Route::get('|^librarian/books/?$|',                             'LibrarianBookManagment',       'books'),
+        Route::get('|^librarian/book/([0-9]+)/?$|',                     'LibrarianBookManagment',       'bookId'),
         Route::get('|^librarian/book/edit/?$|',                         'LibrarianBookManagment',       'getEdit'),
         Route::get('|^librarian/book/edit/([0-9]+)/?$|',                'LibrarianBookManagment',       'getEdit'),
         Route::post('|^librarian/book/edit/([0-9]+)/?$|',               'LibrarianBookManagment',       'postEdit'),

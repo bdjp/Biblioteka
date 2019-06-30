@@ -3,18 +3,29 @@
 
     use App\Core\Model;
     use App\Core\Field;
+    use App\Validators\NumberValidator;
+    use App\Validators\StringValidator;
+    use App\Validators\DateTimeValidator;
 
     class ReservationModel extends Model{
         protected function getFields(): array {
             return [
-                'reservation_id'      => Field::readonlyInteger(11),
-                'created_at'          => Field::readonlyDateTime(),
+                'reservation_id'      =>  new Field((new NumberValidator())->setInteger()
+                                                                            ->setUnsigned()
+                                                                            ->setIntegerLength(10), false),
+                'created_at'          => new Field(new DateTimeValidator(), false),
 
-                'expires_at'          => Field::editableDateTime(),
+                'expires_at'          => new Field(new DateTimeValidator(), false),
                 
-                'student_id'          => Field::editableInteger(11),
-                'category_id'         => Field::editableInteger(11),
-                'librarian_id'        => Field::editableInteger(11)
+                'student_id'         =>  new Field((new NumberValidator())->setInteger()
+                                                                            ->setUnsigned()
+                                                                            ->setIntegerLength(10)),
+                'category_id'        =>  new Field((new NumberValidator())->setInteger()
+                                                                            ->setUnsigned()
+                                                                            ->setIntegerLength(10)),
+                'librarian_id'       =>  new Field((new NumberValidator())->setInteger()
+                                                                            ->setUnsigned()
+                                                                            ->setIntegerLength(10))
             ];
         }
 

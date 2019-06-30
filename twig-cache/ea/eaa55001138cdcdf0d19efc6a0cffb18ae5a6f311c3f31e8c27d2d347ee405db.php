@@ -27,6 +27,7 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 
         $this->blocks = [
             'naslov' => [$this, 'block_naslov'],
+            'dash' => [$this, 'block_dash'],
             'main' => [$this, 'block_main'],
         ];
     }
@@ -66,7 +67,7 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 </head>
 
 <body>
-    <div class=\"container-fluid\">
+    <div class=\"container-fluid mali\">
         <nav class=\"navbar navbar-expand-lg\" id=\"glavni-nav\">
 
 
@@ -75,7 +76,7 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
                 <img id=\"logo\" src=\"";
         // line 21
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "assets/img/banner.png\" alt=\"Banner 1\"></a>
+        echo "assets/img/logo4.png\" alt=\"Banner 1\"></a>
 
             <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\"
                 aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -92,26 +93,48 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 
                 <ul class=\"navbar-nav ml-auto\">
                     <li class=\"nav-item \">
-                        <a class=\"nav-link\" href=\"#\">Knjige</a>
+                        <a class=\"nav-link\" href=\"";
+        // line 38
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "user/login\">Uloguje se</a>
                     </li>
                     <li class=\"nav-item \">
-                        <a class=\"nav-link\" href=\"#\">Knjige</a>
+                        <a class=\"nav-link\" href=\"#\">Odjava</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
-        <div class=\"row  justify-content-end align-items-center py-2\" id=\"drugi_nav\">
-            <div class=\"col-md-3 text-right mr-3\">
-                    <a><i class=\"fab fa-facebook-square fa-2x px-1\"></i></a>
-                    <a><i class=\"fab fa-instagram fa-2x px-1\"></i></a>
-                    <a><i class=\"fab fa-youtube fa-2x px-1\"></i></a>
-            </div>
+        <nav class=\"navbar navbar-expand-lg\" id=\"drugi-nav\">
+                <div class=\"collapse navbar-collapse\" id=\"navbarText\">
+                        <ul class=\"navbar-nav mr-auto\">
+                            <li class=\"nav-item active\">
+                            ";
+        // line 51
+        $this->displayBlock('dash', $context, $blocks);
+        // line 52
+        echo "                            <li class=\"nav-item\"><a class=\"nav-link\" href=\"#\"></a></li>
+                        </ul>
+        
+                        <ul class=\"navbar-nav ml-auto\">
+                            <li class=\"nav-item \">
+                                <a><i class=\"fab fa-facebook-square fa-2x px-1\"></i></a>
+                            </li>
+                            <li class=\"nav-item \">
+                                <a><i class=\"fab fa-instagram fa-2x px-1\"></i></a>
+                            </li>
+                            <li class=\"nav-item \">
+                                    <a><i class=\"fab fa-youtube fa-2x px-1\"></i></a>
+                                </li>
+                        </ul>
+                    </div>
+                </nav>
+
         </div>
         ";
-        // line 54
+        // line 70
         $this->displayBlock('main', $context, $blocks);
-        // line 57
+        // line 73
         echo "        
 
             <footer id=\"footer\">
@@ -122,19 +145,19 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
      
 
             <script> const BASE = '";
-        // line 66
+        // line 82
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "';</script>
             <script src=\"";
-        // line 67
+        // line 83
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/libs/jquery/dist/jquery.min.js\"></script>
             <script src=\"";
-        // line 68
+        // line 84
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
             <script src=\"";
-        // line 69
+        // line 85
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
         echo "assets/js/books.js\"></script>
         </div>
@@ -149,10 +172,16 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
         echo "Pocetna";
     }
 
-    // line 54
+    // line 51
+    public function block_dash($context, array $blocks = [])
+    {
+        echo "         ";
+    }
+
+    // line 70
     public function block_main($context, array $blocks = [])
     {
-        // line 55
+        // line 71
         echo "        
         ";
     }
@@ -169,7 +198,7 @@ class __TwigTemplate_acb99431303b1e3138865303d6a0aacf02eb4eb20ae255f28f264fe0f1c
 
     public function getDebugInfo()
     {
-        return array (  156 => 55,  153 => 54,  147 => 6,  138 => 69,  134 => 68,  130 => 67,  126 => 66,  115 => 57,  113 => 54,  77 => 21,  64 => 11,  60 => 10,  56 => 9,  52 => 8,  48 => 7,  44 => 6,  37 => 1,);
+        return array (  185 => 71,  182 => 70,  176 => 51,  170 => 6,  161 => 85,  157 => 84,  153 => 83,  149 => 82,  138 => 73,  136 => 70,  116 => 52,  114 => 51,  98 => 38,  78 => 21,  65 => 11,  61 => 10,  57 => 9,  53 => 8,  49 => 7,  45 => 6,  38 => 1,);
     }
 
     public function getSourceContext()

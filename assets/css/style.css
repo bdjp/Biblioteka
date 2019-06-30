@@ -48,11 +48,11 @@ body{
   background-color: #c0392b;
 }
 
-#drugi_nav{
+.mali > #drugi-nav{
   background-color: #333333;
 }
 
-#drugi_nav i{
+#drugi_nav.navbarText a {
   color: #fff;
 }
 .dash-box{

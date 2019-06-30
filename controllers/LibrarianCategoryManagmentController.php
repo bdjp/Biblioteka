@@ -9,34 +9,43 @@
 
             $categoryModel = new \App\Models\CategoryModel($this->getDatabaseConnection());
             $categories = $categoryModel->getAll();
-            $this->set('categories', $categories);
+            
 
             $bookModel = new \App\Models\BookModel($this->getDatabaseConnection());
             $knjige = $bookModel->getAll();
-            $this->set('knjige' , $knjige);
+
+            foreach ($categories as $category) {
+                $category->bookCount = 0;
+
+                foreach ($knjige as $knjiga) {
+                    if($knjiga->category_id == $category->category_id) {
+                        $category->bookCount++;
+                    }
+                }
+            }
+            $this->set('categories', $categories);
+            $this->set('knjige', $knjige);
+
+
        }
 
-       public function getEdit($categoryId) {
+       public function getEdit() {
            $categoryModel = new \App\Models\CategoryModel($this->getDatabaseConnection());
-           $category = $categoryModel->getById($categoryId);
+           $categories = $categoryModel->getAll();
 
-           if(!$category) {
-               $this->redirect(\Configuration::BASE . 'user/categories');
-           }
+           $this->set('categories', $categories);
 
-           $this->set('category', $category);
-
-           return $categoryModel;
        }
 
-       public function postEdit($categoryId) {
-        $categoryModel = $this->getEdit($categoryId);
-        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+       public function postEdit() {
+        $categoryModel = new \App\Models\CategoryModel($this->getDatabaseConnection());
+        $name = filter_input(INPUT_POST, 'name_edit', FILTER_SANITIZE_STRING);
+        $id =  filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_STRING);
 
-        $categoryModel->getById($categoryId, [
+        $categoryModel->editById($id, [
             'name' => $name
         ]);
-        $this->redirect(\Configuration::BASE . 'user/categories');
+        $this->redirect(\Configuration::BASE . 'librarian/categories');
        }
 
 
@@ -45,15 +54,15 @@
        }
 
        public function postAdd() {
-        $categoryModel = $this->getEdit($categoryId);
-        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+        $categoryModel = new \App\Models\CategoryModel($this->getDatabaseConnection());
+        $name = filter_input(INPUT_POST, 'name_add', FILTER_SANITIZE_STRING);
 
         $categoryId = $categoryModel ->add ([
             'name' => $name
         ]);
 
         if($categoryId) {
-            $this->redirect(\Configuration::BASE . 'user/categories');
+            $this->redirect(\Configuration::BASE . 'librarian/categories');
         }
 
         $this->set('message', 'Doslo je do greske: Nije moguce dodati ovu kategoriju!');

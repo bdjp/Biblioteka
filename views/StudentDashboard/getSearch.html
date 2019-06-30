@@ -1,0 +1,76 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 col-md-3 borded">
+                Pretraga po kategorijama
+                <div class="card">
+                        <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Izaberite kategoriju</h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
+                                    {% for category in categories %}
+                                    <label class="form-check">
+                                      <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                      <span class="form-check-label">
+                                        {{ category.name }}
+                                      </span>
+                                    </label>
+                                    {% endfor %} 
+                                    </div> <!-- card-body.// -->
+                                </div>
+                            </article> <!-- card-group-item.// -->
+
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <h6 class="title">Brands </h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body">
+                                <form>
+                                    <label class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="">
+                                      <span class="form-check-label">
+                                        Mersedes Benz
+                                      </span>
+                                    </label> <!-- form-check.// -->
+                                    <label class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="">
+                                      <span class="form-check-label">
+                                        Nissan Altima
+                                      </span>
+                                    </label>  <!-- form-check.// -->
+                                    <label class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="">
+                                      <span class="form-check-label">
+                                        Another Brand
+                                      </span>
+                                    </label>  <!-- form-check.// -->
+                                </form>
+                    
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- card-group-item.// -->
+                        
+                        
+                    </div> <!-- card.// -->
+        </div>
+        <div class="col-12 col-md-9 border">
+            <div class="row">
+                <div class="col-12">
+                Pretraga po kljucnoj reci
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    Knjige
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

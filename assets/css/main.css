@@ -34,7 +34,9 @@ color: #000;
 justify-content: stretch;
      
 }
-
+#drugi-nav{
+    background-color: #333333;
+  }
 #logo {
     width: 200px;
     height: 100px;
@@ -94,4 +96,36 @@ footer {
 /* Scale up the box */
 .dugme:hover {
     transform: scale(1.01, 1.01);
+}
+
+
+/* STUDENT/dashboard */ 
+.dugmeS {
+    
+    padding: calc(23vh - 50px) 0;
+    position: relative;
+}
+.dugmeS a {
+    padding-top: 15vh;
+    font-size: 3vh;
+    position: absolute;
+    border: 0px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+    background-color: #0059FF!important;
+}
+  
+/* Scale up the box */
+.dugmeS:hover {
+    transform: scale(1.01, 1.01);
+}
+
+/*slika knjige */
+#korice img {
+    width: 100%;
+    height: 50vh;
 }

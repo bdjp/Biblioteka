@@ -1,8 +1,37 @@
 {% extends "_global/index.html" %}
 
 {% block main %}
-    <div>
-        Samo za studente
-    </div>
+<div>
+        <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12 my-4 naslov">
+                          <h1>Opcije dostupne studentima</h1>
+                    </div>
+                </div>  
+                    <div class="row dashboard text-center mb-5">
+                        <div class="col mx-1 box dugmeS border border-success">
+                            <a href="{{ BASE }}student/book/search" 
+                            class="btn btn-primary text-center">
+                            <i class="fas fa-book"></i><br>   
+                            Pretraga knjiga 
+                            </a>
+                        </div>
+                        <div class="col mx-1 dugmeS border border-success">
+                                <a href="{{ BASE }}librarian/books/"
+                                 class="btn btn-primary">
+                                 <i class="fas fa-quote-right"></i><br>    
+                                 Preporuka knjige
+                                </a>
+                        </div>
+                        <div class="col mx-1 box dugmeS border border-success">
+                            <a href="{{ BASE }}student/debt" 
+                            class="btn btn-primary text-center">
+                            <i class="far fa-clock"></i><br> 
+                            Moja zaduzenja 
+                            </a>
+                        </div>
+                        
+                    </div>
+</div>
 
 {% endblock %}
