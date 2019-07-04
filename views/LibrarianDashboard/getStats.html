@@ -9,44 +9,35 @@
 
 
 <!-- Najtraženiji naslovi -->
-<div id="Home" class="tabcontent text-center">
+<div class="row">
+    <div class="col-md-8 ">
+
+        
+</div>
+</div>
+<div id="Home" class="tabcontent text-center ">
     <h3>Najtraženiji naslovi</h3>
     <p>Prikaz statistike najtrazenijih naslova</p>
-    <table class="table table-striped text-left">
+    <table class="table table-striped text-left col-md-8 offset-md-2">
         <thead>
             <tr>
-                <th scope="col">Red. Br</th>
                 <th scope="col">Naziv knjige</th>
-                <th scope="col">Autor</th>
-                <th scope="col">ISBN</th>
                 <th scope="col">Broj rezervacija</th>
 
             </tr>
         </thead>
         <tbody>
-            {% for raz in rez %}
+            {% for rez in brojrez %}
             <tr>
-                <th scope="row">1</th>
-                <td>{{ raz.ime_knjige}}</td>
-                <td>Ivo Andric</td>
-                <td>123456789</td>
-                <td>150</td>
+                <td>{% if rez in ['4'] %}
+                        Gorski vjenac
+                    {% elseif rez in ['2'] %}
+                        Tvrdica
+                    {% endif %}</td>
+                <td>{{ rez }}</td>
             </tr>
             {% endfor %}
-            <tr>
-                <th scope="row">2</th>
-                <td>Noz</td>
-                <td>Vuk Draskovic</td>
-                <td>987456321</td>
-                <td>132</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Alisa u zemlji cuda</td>
-                <td>Luis Kerol</td>
-                <td>1122336655</td>
-                <td>110</td>
-            </tr>
+            
         </tbody>
     </table>
 </div>

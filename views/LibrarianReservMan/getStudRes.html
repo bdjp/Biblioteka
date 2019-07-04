@@ -38,12 +38,12 @@
       </div>
     </div>
 
-    {% for rez in odrezervacije %}
+    {% for rezz in odrezervacije %}
     <div class="col-md-3">
       <div class="card text-white bg-light mb-3">
-        <div class="card-header zeleniNaslov text-center">{{ rez.ime_studenta }} {{ rez.prezime_studenta }}</div>
+        <div class="card-header zeleniNaslov text-center">{{ rezz.imeStudenta }} {{ rezz.prezimeStudenta }}</div>
         <div class="card-body">
-          <h5 class="card-title">{{ rez.ime_knjige }}</h5>
+          <h5 class="card-title">{{ rezz.ime_knjige }}</h5>
           <p class="card-text">Zaduzenje traje do: {{ rez.expires_at|date("d/m/Y") }} 23:59</p>
         </div>
 

@@ -175,7 +175,7 @@
             $rezervacije2 = $rm->getAllByFieldName('stud_res', 1);
             # print_r($rezervacije);
             foreach($rezervacije2 as $rez) {
-                if($rez->taken == 0 && $rez->returned == 0) {
+                if($rez->taken == 0 && $rez->returned == 0 ) {
                     $potrebneRezervacije2[] = $rez;
                 }
             }
@@ -193,8 +193,8 @@
             foreach($potrebneRezervacije2 as $rez) {
                 foreach($studenti as $student) {
                     if($rez->stud_res_id == $student->student_id){
-                        $rez->ime_studenta = $student->forename;
-                        $rez->prezime_studenta = $student->surname;
+                        $rez->imeStudenta = $student->forename;
+                        $rez->prezimeStudenta = $student->surname;
                     }
                 }
             }

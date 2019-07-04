@@ -29,29 +29,25 @@
         $bm = new ReservationModel($this->getDatabaseConnection());
         $rezervacije = $bm->getAll();
 
+
+
         foreach($rezervacije as $rez) {
           foreach($knjige as $knjiga) { 
             if($rez->book_id == $knjiga->book_id) {
-              $rez->ime_knjige = $knjiga->title;
-             unset($rez->reservation_id);
-             unset($rez->created_at);
-             unset($rez->expires_at);
-             unset($rez->student_id);
-             unset($rez->librarian_id);
-             unset($rez->taken);
-             unset($rez->returned);
-             unset($rez->stud_res);
-             unset($rez->stud_res);
-             unset($rez->stud_res_app);
+              $brojRez[] = $knjiga->title;
+
+
             }
           }
         }
+        $broj_rezervacija = array_count_values($brojRez);
+
 
         //$count = count(get_object_vars($rezervacije->book_id));
 
-        $this->set('rez', $rezervacije);
+        $this->set('brojrez', $broj_rezervacija);
 
-        print_r($rezervacije);
+        print_r($broj_rezervacija);
 
        // $broj_rezervacija = array_count_values($book_ids);
 

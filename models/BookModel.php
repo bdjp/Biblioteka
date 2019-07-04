@@ -65,7 +65,7 @@
                     FROM
                         book
                     WHERE
-                        isbn = ? ';
+                        isbn LIKE ? ';
                     
             
             $prep = $this->getDatabaseConnection()->getConnection()->prepare($sql);
