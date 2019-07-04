@@ -1,11 +1,11 @@
 {% extends "_global/index.html" %}
 
 {% block main %}
-    <div>
+    <div class="glavniji-div">
             <div class="container">
                     <div class="row text-center">
                         <div class="col-md-12 my-4 naslov">
-                              <h1>Opcije dostupne prijavljenim korisnicima</h1>
+                              <h1>Opcije dostupne bibliotekarima</h1>
                         </div>
                     </div>  
                         <div class="row dashboard text-center mb-5">
@@ -24,7 +24,7 @@
                                     </a>
                             </div>
                             <div class="col mx-1 box dugme border border-success">
-                                <a href="{{ BASE }}librarian/myads/" 
+                                <a href="{{ BASE }}librarian/reservations/" 
                                 class="btn btn-primary text-center">
                                 <i class="fas fa-paw fa-lg"></i><br> 
                                 Zaduzenja
@@ -35,3 +35,4 @@
     </div>
 
 {% endblock %}
+{% block welcome %} <b class="pl-4 beli-tekst"> Zdravo {{ bib.forename }}! </b>  {% endblock %}

@@ -1,0 +1,20 @@
+{% extends "_global/sindex.html" %}
+
+{% block main %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-10 offset-1 col-md-6 offset-md-3">
+                    {% if poruka %}
+                    <div class="alert alert-success text-center" role="alert">
+                        <h4 class="alert-heading">{{ poruka }}</h4>
+                        <p></p>
+                        <hr>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+        
+
+{% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}student/dashboard"> Dashboard </a>  {% endblock %}

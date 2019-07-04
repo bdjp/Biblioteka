@@ -1,11 +1,93 @@
-{% extends "_global/index.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block main %}
-    <div>
-        <p>{{ message }}</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="icon" type="image/png" href="{{ BASE }}assets/img/banner.png">
+  <link rel="stylesheet" href="{{ BASE }}assets/libs/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ BASE }}assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{ BASE }}assets/css/main.css?ts=<?=time()?>">
+  <link rel="stylesheet" href="{{ BASE }}assets/css/style.css?ts=<?=time()?>">
+  <link rel="stylesheet" href="{{ BASE }}assets/css/login.css?ts=<?=time()?>">
+</head>
 
-        <p>Klikni <a href="{{ BASE }}user/login">ovde</a> da se vratis nazad.</p>
+<body>
+  <div class="row mt-5 pt-3">
+    <div class="col-12  p-0">
+      <img src="{{ BASE }}assets/img/logo8.png"  class="rounded mx-auto d-block" alt="...">
     </div>
+  </div>
 
-    
-{% endblock %}
+  <div class="row">
+    <div class="col-10 offset-1 col-md-6 offset-md-3 py-5">
+      <div class="card">
+        <div class="card-header text-center">
+            <i class="fas fa-sign-in-alt"></i>
+          Prijava
+        </div>
+
+        <div class="card-body">
+          <form method="post"  action="{{ BASE }}user/login">
+
+            <div class="form-row">
+              <div class="form-group col-md-6 offset-md-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                  </div>
+
+                  <input type="text" id="title" name="login_username" class="form-control" 
+                      required placeholder="Korisnicko ime">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 offset-md-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-key"></i>
+                    </span>
+                  </div>
+
+                  <input type="password" id="title" name="login_password" class="form-control" 
+                  required placeholder="Lozinka">
+                </div>
+              </div>
+            </div>
+            {% if message %}
+            <div class="form-row">
+                    <div class="form-group col-md-6 offset-md-3">
+            <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                    
+                  </div>
+                </div>
+            </div>
+            {% endif %}      
+            <div class="form-row mt-2">
+                <button type="submit" class="btn btn-primary col-4 offset-4 col-md-4 offset-md-4">
+                  Prijavi se
+                </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script> const BASE = '{{ BASE }}';</script>
+  <script src="{{ BASE }}assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="{{ BASE }}assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="{{ BASE }}assets/js/books.js"></script>
+</body>
+
+</html>

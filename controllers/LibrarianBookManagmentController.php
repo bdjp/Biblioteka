@@ -8,6 +8,8 @@
     use App\Models\LibrarianModel;
     use App\Models\StudentModel;
     use App\Models\ReservationModel;
+    use App\Models\BookAuthorModel;
+    use App\Models\AuthorModel;
     use App\Validators\NumberValidator;
 
     class LibrarianBookManagmentController extends  LibrarianRoleController{
@@ -17,13 +19,72 @@
 
             $id = rand(1,10);
             $books = $bm->getAll();
-            shuffle($books);
-            $this->set('books', $books);
+            // shuffle($books);
+            //$this->set('books', $books);
+
+            $resm = new ReservationModel($this->getDatabaseConnection());
+            $reservations = $resm->getAll();
+
+            
+            foreach ( $books as $book) {             // za svaku knjigu 
+                foreach ( $reservations as $res) {   // za svaku rezervaciju
+                     // ako knjiga postoji u rezervacijama i uzetaje a nije vracena upisi je u niz
+                    if($book->book_id == $res->book_id && $res->taken == 1 && $res->returned == 0) {
+                        $knjige[] = $book; 
+                        }
+                }
+            }
+            $this->set('books', $knjige);
+          
+
+
+
+           
+
+
+
+
 
             // deo za izbor kategorija
             $cm = new CategoryModel($this->getDatabaseConnection());
             $items = $cm->getAll();
             $this->set('categories', $items);
+
+            // deo za izbor autora
+           /* $abm = new BookAuthorModel($this->getDatabaseConnection());
+            $autori_knjiga = $abm->getAll();
+
+            // izvlacimo Id-jevi autora
+            foreach ( $autori_knjiga as $autor) {
+                $autori_idijevi[] = $autor->author_id;
+            }*/
+            
+            // uzimamo iz tabele autor sve idejeve
+            $am = new AuthorModel($this->getDatabaseConnection());
+            $autori= $am->getAll();
+            $this->set('autori', $autori);
+            
+            /*$autori_id = $am->getFieldValues('author_id');
+
+
+            $autori_ime = $am->getFieldValues('forename');
+            
+
+            print_r($autori_ime);
+            exit;*/
+
+            /* ako id iz tabele book_author jedan id-ju iz tabele author
+            for ($i=0; $i<count($autori_idijevi); $i++) { 
+                    if($autori_idijevi[$i] == $autori_id->author_id) {
+                        $this->set('hmm', $items);
+                    }
+            }*/
+
+            /*print_r($autori_idijevi);
+            exit;*/
+            $this->set('categories', $items);
+
+
        }
 
        public function bookId($id) {
@@ -43,6 +104,10 @@
          $stud = $sm->getAll();
          $this->set('studenti', $stud);
 
+         $stud2 = $sm->getByFieldName('username', 's_n.nikolic');
+         /*print_r($stud2);
+         exit;*/
+
          $am = new ActiveModel($this->getDatabaseConnection());
          $act = $am->getAll();
          $this->set('stanja', $act);
@@ -52,36 +117,53 @@
          $this->set('rezervacije', $res);
 
 
-        // sva zaduzenja gde je book_id jednak id-ju knjige iz url-a
-        $zaduzenje = $rm->getAllByFieldName('book_id', $id);
+        // sva zaduzenja gde je book_id jednak id-ju knjige iz url-a 
+        $zaduzenja = $rm->getAllByFieldName('book_id', $id);
         /*print_r($zaduzenje);
         exit;*/
-        if(!$zaduzenje) {
+        if(!$zaduzenja) {
             return;
         }
         // za svako zaduzenje izvuci id studenta
-        foreach ( $zaduzenje as $student) {
-            $id_studenta[] = $student->student_id;
+        foreach ( $zaduzenja as $zad) {
+            foreach ( $stud as $student) {
+                if($zad->student_id == $student->student_id) {
+                    $zad->imeStudenta = $student->forename;
+                    $zad->prezimeStudenta = $student->surname;
+                }
+                if($zad->returned == 1) {
+                    $zad->vracena = 1;
+                }
+            }
         }
+        $this->set('rezervacije', $zaduzenja);
+
         
-        if(!$id_studenta) {
-            return;
-        }
-        //uzmi podatke iz tabele student na osnovu izvucenih id-jeva studenta
-        for ($i=0; $i<count($id_studenta); $i++) { 
-            $stupi[] = $sm->getById($id_studenta[$i]);
-        }
-       
-        $this->set('stupi', $stupi);
         
         
 
-        foreach ( $zaduzenje as $trajanje) {
-            $created[] = $trajanje->created_at;
+        foreach ( $zaduzenja as $trajanje) {
+            $kreirano[] = $trajanje->created_at;
         }
-        $this->set('uzeo', $zaduzenje);
-        
-        
+
+            $this->set('uzeo', $kreirano);
+
+            // autor knjige!!! 
+            $bam = new BookAuthorModel($this->getDatabaseConnection());
+            $am = new AuthorModel($this->getDatabaseConnection());
+            $svi_autori = $am->getAll();
+            $autor = $bam->getByFieldName('book_id', $id);
+
+            $imeAutora = '';
+            $prezimeAutora = '';
+            foreach ( $svi_autori as $jedana) {
+                if($autor->author_id == $jedana->author_id) {
+                    $imeAutora = $jedana->forename;
+                    $prezimeAutora = $jedana->surname;
+                }
+            }
+            $this->set('imeAutora', $imeAutora);
+            $this->set('prezimeAutora', $prezimeAutora);
        }
 
        public function getAdd() {
@@ -114,14 +196,11 @@
          $isbn          = filter_input(INPUT_POST, 'isbn' ,        FILTER_SANITIZE_STRING);
          $published_at  = filter_input(INPUT_POST, 'published_at', FILTER_SANITIZE_STRING);
          $categoryId    = filter_input(INPUT_POST, 'category_id',  FILTER_SANITIZE_NUMBER_INT);
+         $authorId      = filter_input(INPUT_POST, 'author_id',  FILTER_SANITIZE_NUMBER_INT);
  
          $bm = new BookModel($this->getDatabaseConnection());
-     
-         $published_at .= ':00';
+         $bam = new BookAuthorModel($this->getDatabaseConnection());
 
-         $published_at = str_replace('T', ' ', $published_at);
-
-        
          if (strlen($isbn) != 13 )  {
             $this->set('message', 'ISBN mora imati tacno 13 cifara.');
             return;
@@ -140,10 +219,26 @@
              
          ]);
 
+
          if (!$novaKnjiga) {
              $this->set('message', 'Došlo je do greške prilikom dodavanja nove knjige.');
              return;
          }
+
+         // zapis veze izmedju knjige i autora u tabelu book_author
+         // na osnovu isbn-a uzimamo id knjige
+         $book = $bm->getByFieldName('isbn', $isbn);
+         $bookId = $book->book_id;
+
+         $novaVezaBookAuthor = $bam->add ([
+            'book_id' => $bookId,
+            'author_id' => $authorId,
+         ]);
+
+         if (!$novaVezaBookAuthor) {
+            $this->set('message', 'Došlo je do greške prilikom dodavanja nove knjige.');
+            return;
+        }
  
          if (!$this->doUpload('image', $novaKnjiga)) { 
              return;
@@ -174,13 +269,33 @@
          $book = $bm->getById($id);
          $this->set('book', $book);
          $this->getAdd();
-      
+
+        $am = new ActiveModel($this->getDatabaseConnection());
+        $active = $am->getAll();
+        $this->set('stanja', $active);
+
+        $atm = new AuthorModel($this->getDatabaseConnection());
+        $autori_knjiga = $atm->getAll();
+        $this->set('autori', $autori_knjiga);
 
         
-            $am = new ActiveModel($this->getDatabaseConnection());
-            $active = $am->getAll();
-            $this->set('stanja', $active);
 
+        /* test 1 */
+        // uzimamo zapis o autoru knjige na osnovu id-ja knjige
+        $bam = new BookAuthorModel($this->getDatabaseConnection());
+        $autor_ove_knjige = $bam->getByFieldName('book_id', $id);
+        
+        // izvlacimo ime autora iz tog zapisa
+        $autorm = new AuthorModel($this->getDatabaseConnection());
+        $ime_autora = $autorm->getByFieldName('author_id', $autor_ove_knjige->author_id);
+
+        $this->set('imeAutora', $ime_autora);
+        /*print_r($ime_autora);
+        exit;
+
+        
+        $this->set('ime_autora', $ime_autora->forename);*/
+        
          
          }
 
@@ -191,13 +306,10 @@
             $published_at  = filter_input(INPUT_POST, 'published_at', FILTER_SANITIZE_STRING);
             $categoryId    = filter_input(INPUT_POST, 'category_id',  FILTER_SANITIZE_NUMBER_INT);
             $activeId    = filter_input(INPUT_POST,   'active_id',    FILTER_SANITIZE_NUMBER_INT);
-    
+            $authorId      = filter_input(INPUT_POST, 'author_id',  FILTER_SANITIZE_NUMBER_INT);
+
             $bm = new BookModel($this->getDatabaseConnection());
-        
-            $published_at .= ':00';
-   
-            $published_at = str_replace('T', ' ', $published_at);
-   
+            $bam = new BookAuthorModel($this->getDatabaseConnection());
            
             if (strlen($isbn) != 13 )  {
                $this->set('message', 'ISBN mora imati tacno 13 cifara.');
@@ -217,6 +329,16 @@
    
             if (!$novaKnjiga) {
                 $this->set('message', 'Došlo je do greške prilikom izmene ove knjige.');
+                return;
+            }
+
+            $novaVezaBookAuthor = $bam->editById ($id, [
+                'book_id' => $id,
+                'author_id' => $authorId,
+            ]);
+
+            if (!$novaVezaBookAuthor) {
+                $this->set('message', 'Došlo je do greške prilikom dodavanja nove knjige.');
                 return;
             }
     

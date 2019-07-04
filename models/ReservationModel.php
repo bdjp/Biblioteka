@@ -6,6 +6,7 @@
     use App\Validators\NumberValidator;
     use App\Validators\StringValidator;
     use App\Validators\DateTimeValidator;
+    use App\Validators\BitValidator;
 
     class ReservationModel extends Model{
         protected function getFields(): array {
@@ -13,19 +14,26 @@
                 'reservation_id'      =>  new Field((new NumberValidator())->setInteger()
                                                                             ->setUnsigned()
                                                                             ->setIntegerLength(10), false),
-                'created_at'          => new Field(new DateTimeValidator(), false),
+                'created_at'          => new Field(new DateTimeValidator()),
 
-                'expires_at'          => new Field(new DateTimeValidator(), false),
+                'expires_at'          => new Field((new DateTimeValidator())->allowDate()->allowTime()),
                 
-                'student_id'         =>  new Field((new NumberValidator())->setInteger()
+                'student_id'          =>  new Field((new NumberValidator())->setInteger()
                                                                             ->setUnsigned()
                                                                             ->setIntegerLength(10)),
-                'category_id'        =>  new Field((new NumberValidator())->setInteger()
+                'librarian_id'        =>  new Field((new NumberValidator())->setInteger()
                                                                             ->setUnsigned()
                                                                             ->setIntegerLength(10)),
-                'librarian_id'       =>  new Field((new NumberValidator())->setInteger()
+                'book_id'             =>  new Field((new NumberValidator())->setInteger()
                                                                             ->setUnsigned()
-                                                                            ->setIntegerLength(10))
+                                                                            ->setIntegerLength(10)),                                                            
+                'taken'              => new Field(new BitValidator()),
+                'returned'           => new Field(new BitValidator()),
+                'stud_res'           => new Field(new BitValidator()),
+                'stud_res_id'         => new Field((new NumberValidator())->setInteger()
+                                                                         ->setUnsigned()
+                                                                         ->setIntegerLength(10)), 
+                'stud_res_app'           => new Field(new BitValidator())                                                      
             ];
         }
 

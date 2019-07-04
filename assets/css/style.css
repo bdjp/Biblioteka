@@ -6,7 +6,9 @@ body{
   padding: 0;
   background:#f4f4f4;
 }
-
+.beli-tekst {
+  color: #fff!important;
+}
 .container-fluid {
   padding: 0!important;
 }
@@ -19,6 +21,11 @@ body{
 #main{
   margin-bottom: 100px;
 }
+
+main {
+  min-height: calc(100vh - 300px);
+}
+
 .logo{
   padding-right: 10px;
 }
@@ -30,11 +37,18 @@ body{
   background-color: #e74c3c;
   border-color: #c0392b;
 }
+#glavni-nav-stud {
+  background-color: #0053FA;
+  border-color: #c0392b;
+}
 #glavni-nav .navbar-brand {
   color: #fff;
 }
 
 #glavni-nav .navbar-nav > li > a {
+  color: #fff;
+}
+#glavni-nav-stud .navbar-nav > li > a {
   color: #fff;
 }
 #glavni-nav .navbar-nav > li > a:hover,
@@ -54,6 +68,10 @@ body{
 
 #drugi_nav.navbarText a {
   color: #fff;
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: rgb(255,255,255)!important;
 }
 .dash-box{
   text-align:center;
@@ -85,9 +103,9 @@ body{
 .container1 {
   padding: 0 !important;  
 }
-#Home {background-color: rgb(240, 106, 106);}
-#News {background-color: rgb(180, 240, 106);}
-#Contact {background-color: rgb(106, 131, 240);}
+#Home {background-color: #C2C7C8;}
+#News {background-color: rgb(153, 155, 161);}
+#Contact {background-color: #7F808A;}
 #About {background-color: rgb(240, 198, 106);}
 
 #meni1 .btn {
@@ -103,6 +121,99 @@ body{
 }
 
 /* kretanje svake knjige */ 
+
+/*bibliotekar prikaz knjiga*/
+
+.bibliotekar-slika img{
+  width: 50px;
+  height: 50px;
+}
+
+.card-img-top{
+  width: 200px;
+  height: 270px;
+}
+.kartica1{
+  border: 1px solid red;
+}
+
+/* student - zaduzenja */
+.vratio{
+  background-color: #2dff03;
+}
+.nijevratio{
+  background-color: #ff0303;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+/*STATISTICKI PODACI STYLE*/
+
+/* Style tab links 
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) 
+body{
+  box-sizing: border-box;
+}
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+table{
+  color: #000;
+}
+#Home {background-color: red;}
+#News {background-color: green;}
+#Contact {background-color: blue;}
+#About {background-color: orange;}*/
+
+.izmena {
+  padding: 25vh 0!important;
+}
+
+.studentBoja {
+  background-color: #0053fa;
+  color: #fff;
+  font-weight: bold;
+}
+
+.bibBoja {
+  background-color: #e74c3c;
+  color: #fff;
+  font-weight: bold;
+}
+.btn-danger1 {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.zeleniNaslov {
+  background-color: #6BE16B;
+}
+
+.crveniNaslov {
+  background-color: #D56767;
+}
+
 
 
 

@@ -95,6 +95,7 @@ class MainController extends Controller {
             $username = \filter_input(INPUT_POST, 'login_username', FILTER_SANITIZE_STRING);
             $password = \filter_input(INPUT_POST, 'login_password', FILTER_SANITIZE_STRING);
 
+           
             //ako nema bibliotekara ili osobe prekini
             $osoba = $this->roleSwitch();
             if(!$osoba) {
@@ -107,8 +108,9 @@ class MainController extends Controller {
                 $this->set('message', 'Doslo je do greske: Lozinka nije ispravnog formata.');
                 return;
             }
-
-            $passHash = \password_hash($osoba->password, PASSWORD_DEFAULT);
+            
+           // $passHash = \password_hash($osoba->password, PASSWORD_DEFAULT);
+             $passHash = $osoba->password;
 
             if(!password_verify($password, $passHash)) {
                sleep(1);
@@ -118,6 +120,13 @@ class MainController extends Controller {
             // upis sesije
             $this->upisiSesiju();
 
+        }
+
+        public function getLogout() {
+            $this->getSession()->clear();
+            $this->getSession()->save();
+    
+            header('Location: ' . BASE . '');
         }
     
 

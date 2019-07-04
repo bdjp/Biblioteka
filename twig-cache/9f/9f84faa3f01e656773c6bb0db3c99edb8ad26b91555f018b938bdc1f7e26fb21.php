@@ -25,6 +25,7 @@ class __TwigTemplate_3eabcff030e7a2ff1484bf7424b1df13c5ac7e29e5f02925a2cdbbc9bf0
 
         $this->blocks = [
             'main' => [$this, 'block_main'],
+            'welcome' => [$this, 'block_welcome'],
         ];
     }
 
@@ -44,11 +45,11 @@ class __TwigTemplate_3eabcff030e7a2ff1484bf7424b1df13c5ac7e29e5f02925a2cdbbc9bf0
     public function block_main($context, array $blocks = [])
     {
         // line 4
-        echo "    <div>
+        echo "    <div class=\"glavniji-div\">
             <div class=\"container\">
                     <div class=\"row text-center\">
                         <div class=\"col-md-12 my-4 naslov\">
-                              <h1>Opcije dostupne prijavljenim korisnicima</h1>
+                              <h1>Opcije dostupne bibliotekarima</h1>
                         </div>
                     </div>  
                         <div class=\"row dashboard text-center mb-5\">
@@ -76,7 +77,7 @@ class __TwigTemplate_3eabcff030e7a2ff1484bf7424b1df13c5ac7e29e5f02925a2cdbbc9bf0
                                 <a href=\"";
         // line 27
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "librarian/myads/\" 
+        echo "librarian/reservations/\" 
                                 class=\"btn btn-primary text-center\">
                                 <i class=\"fas fa-paw fa-lg\"></i><br> 
                                 Zaduzenja
@@ -87,6 +88,14 @@ class __TwigTemplate_3eabcff030e7a2ff1484bf7424b1df13c5ac7e29e5f02925a2cdbbc9bf0
     </div>
 
 ";
+    }
+
+    // line 38
+    public function block_welcome($context, array $blocks = [])
+    {
+        echo " <b class=\"pl-4 beli-tekst\"> Zdravo ";
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["bib"] ?? null), "forename", [], "any", false, false, false, 38), "html", null, true);
+        echo "! </b>  ";
     }
 
     public function getTemplateName()
@@ -101,7 +110,7 @@ class __TwigTemplate_3eabcff030e7a2ff1484bf7424b1df13c5ac7e29e5f02925a2cdbbc9bf0
 
     public function getDebugInfo()
     {
-        return array (  78 => 27,  68 => 20,  58 => 13,  47 => 4,  44 => 3,  34 => 1,);
+        return array (  94 => 38,  79 => 27,  69 => 20,  59 => 13,  48 => 4,  45 => 3,  35 => 1,);
     }
 
     public function getSourceContext()

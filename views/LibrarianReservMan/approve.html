@@ -1,0 +1,40 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="alert alert-primary text-center" role="alert">
+        Odobravanje rezervacija
+      </div>
+    </div>
+
+    <div class="col col-12 col-md-6 offset-md-3">
+      <div class="card text-white bg-light mb-3">
+
+        <form method="post" action="{{ BASE }}librarian/approve/res/{{ pomoziBoze }}/">
+
+          <div class="card-header zeleniNaslov text-center"> {{ studentIme }} {{ studentPrezime }} </div>
+          <div class="card-body">
+            <h5 class="card-title">Naziv knjige: <b>{{ naziv }}</b> </h5>
+            <p class="card-text">Rezervacija pocinje: {{ pocinje|date("d/m/Y") }} 23:59</p>
+            <p class="card-text">i traje do: {{ kraj|date("d/m/Y") }} 23:59</p>
+          </div>
+
+          <button class="btn btn-success btn-block" type="submit"> Napravi rezervaciju</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block naslov %}
+Registracija
+{% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}librarian/dashboard"> Dashboard </a> {% endblock %}

@@ -23,64 +23,136 @@ class __TwigTemplate_e916e7ed515ff4a1a5bf6708d85d15834ab2ce645961278dc133ee6bdc2
 
         $this->source = $this->getSourceContext();
 
-        $this->blocks = [
-            'main' => [$this, 'block_main'],
-        ];
-    }
+        $this->parent = false;
 
-    protected function doGetParent(array $context)
-    {
-        // line 1
-        return "_global/index.html";
+        $this->blocks = [
+        ];
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
-        $this->parent = $this->loadTemplate("_global/index.html", "Main/getLogin.html", 1);
-        $this->parent->display($context, array_merge($this->blocks, $blocks));
-    }
+        // line 1
+        echo "<!DOCTYPE html>
+<html lang=\"en\">
 
-    // line 3
-    public function block_main($context, array $blocks = [])
-    {
-        // line 4
-        echo "    <div class=\"container-fluid\">
-          <div class=\"row \">
-            <div class=\"col offset-md-5\">
-              <h1 >Prijavite se</h1>
-            </div>
-          </div>
-
-  
-      <section id=\"main\">
-        <div class=\"container\">
-          <div class=\"row\">
-            <div class=\"col-md-4 offset-md-4\">
-              <form id=\"login\" class=\"well\" action=\"";
-        // line 16
+<head>
+  <meta charset=\"UTF-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
+  <title>Document</title>
+  <link rel=\"icon\" type=\"image/png\" href=\"";
+        // line 9
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "user/login\" method=\"POST\">
-                    <div class=\"form-group\">
-                      <label>Korisnicko ime</label>
-                      <input type=\"text\" class=\"form-control\" name=\"login_username\" required placeholder=\"Unesite korisnicko ime...\">
-                    </div>
-                    <div class=\"form-group\">
-                      <label>Lozinka</label>
-                      <input type=\"password\" class=\"form-control\" name=\"login_password\" required placeholder=\"Unesite lozinku\">
-                    </div>
-                    <button type=\"submit\" class=\"btn btn-primary btn-block\">Prijavite se</button>
-                      <br>
-                    <div class=\"col-12 narrow text-center\">
-                        <a href=\"registracija.html\">Nemam nalog / Registruj se <i class=\"fas fa-long-arrow-alt-right\"></i></a>
-                    </div>
-                </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+        echo "assets/img/banner.png\">
+  <link rel=\"stylesheet\" href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/bootstrap/dist/css/bootstrap.min.css\">
+  <link rel=\"stylesheet\" href=\"";
+        // line 11
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/@fortawesome/fontawesome-free/css/all.min.css\">
+  <link rel=\"stylesheet\" href=\"";
+        // line 12
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/css/main.css?ts=<?=time()?>\">
+  <link rel=\"stylesheet\" href=\"";
+        // line 13
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/css/style.css?ts=<?=time()?>\">
+  <link rel=\"stylesheet\" href=\"";
+        // line 14
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/css/login.css?ts=<?=time()?>\">
+</head>
 
-";
+<body>
+  <div class=\"row mt-5 pt-3\">
+    <div class=\"col-12  p-0\">
+      <img src=\"";
+        // line 20
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/img/logo8.png\"  class=\"rounded mx-auto d-block\" alt=\"...\">
+    </div>
+  </div>
+
+  <div class=\"row\">
+    <div class=\"col-10 offset-1 col-md-6 offset-md-3 py-5\">
+      <div class=\"card\">
+        <div class=\"card-header text-center\">
+            <i class=\"fas fa-sign-in-alt\"></i>
+          Prijava
+        </div>
+
+        <div class=\"card-body\">
+          <form method=\"post\"  action=\"";
+        // line 33
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "user/login\">
+
+            <div class=\"form-row\">
+              <div class=\"form-group col-md-6 offset-md-3\">
+                <div class=\"input-group\">
+                  <div class=\"input-group-prepend\">
+                    <span class=\"input-group-text\">
+                        <i class=\"fas fa-user\"></i>
+                    </span>
+                  </div>
+
+                  <input type=\"text\" id=\"title\" name=\"login_username\" class=\"form-control\" 
+                      required placeholder=\"Korisnicko ime\">
+                </div>
+              </div>
+            </div>
+
+            <div class=\"form-row\">
+              <div class=\"form-group col-md-6 offset-md-3\">
+                <div class=\"input-group\">
+                  <div class=\"input-group-prepend\">
+                    <span class=\"input-group-text\">
+                        <i class=\"fas fa-key\"></i>
+                    </span>
+                  </div>
+
+                  <input type=\"password\" id=\"title\" name=\"login_password\" class=\"form-control\" 
+                  required placeholder=\"Lozinka\">
+                </div>
+              </div>
+            </div>
+
+
+            <div class=\"form-row mt-2\">
+                <button type=\"submit\" class=\"btn btn-primary col-4 offset-4 col-md-4 offset-md-4\">
+                  Prijavi se
+                </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script> const BASE = '";
+        // line 79
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "';</script>
+  <script src=\"";
+        // line 80
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/jquery/dist/jquery.min.js\"></script>
+  <script src=\"";
+        // line 81
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/libs/bootstrap/dist/js/bootstrap.min.js\"></script>
+  <script src=\"";
+        // line 82
+        echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
+        echo "assets/js/books.js\"></script>
+</body>
+
+</html>";
     }
 
     public function getTemplateName()
@@ -95,7 +167,7 @@ class __TwigTemplate_e916e7ed515ff4a1a5bf6708d85d15834ab2ce645961278dc133ee6bdc2
 
     public function getDebugInfo()
     {
-        return array (  61 => 16,  47 => 4,  44 => 3,  34 => 1,);
+        return array (  151 => 82,  147 => 81,  143 => 80,  139 => 79,  90 => 33,  74 => 20,  65 => 14,  61 => 13,  57 => 12,  53 => 11,  49 => 10,  45 => 9,  35 => 1,);
     }
 
     public function getSourceContext()

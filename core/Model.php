@@ -122,6 +122,33 @@
             return $item;
         }
 
+        // test
+        public function getFieldValues(string $fieldName) {
+            if (!$this->isFieldNameValid($fieldName)) {
+                throw new \Exception('Ime polja nije ispravno!');
+            }
+
+            $tableName = $this->getTableName();
+            $pdo = $this->dbCon->getConnection();
+            $sql = 'SELECT ' . $fieldName . ' FROM ' . $tableName . ';';
+            $prep = $pdo->prepare($sql);
+            $item = null;
+
+            if ($prep) {
+                $prep->execute([] );
+
+                $item = $prep->fetchAll(PDO::FETCH_OBJ);
+
+                if (!$item) {
+                    $item = null;
+                }
+            }
+
+            return $item;
+        }
+        // kraj testa
+
+
         protected function getFields() {
             return [];
         }

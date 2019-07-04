@@ -1,0 +1,91 @@
+{% extends "_global/sindex.html" %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row ml-md-4 mx-2">
+        <div class="col-12 col-md-3 mt-4">
+            <div class="card ">
+                <div class="card-header text-center studentBoja">
+                    <i class="fas fa-book"></i>
+                    Pretraga po kljucnoj reči
+                </div>
+
+                <div class="card-body">
+                    <form method="post" action="{{ BASE }}student/book/search/">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" id="search_any" name="search_any" class="form-control" required
+                                    placeholder="Unesite naslov knjige koju zelite da zaduzite ili razduzite.">
+                                <div class="input-group-append">
+                                    <button type="submit" class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+            <div class="card">
+                <article class="card-group-item">
+                    <div class="card-header text-center studentBoja">
+                        <i class="fas fa-list"></i>
+                        Izaberite kategoriju
+                    </div>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <form method="post" action="{{ BASE }}student/book/cat/search/">
+                                <div class="input-group">
+                                    <select id="category_id" name="category_id" class="form-control">
+                                        {% for category in categories %}
+                                        <option value="{{ category.category_id }}">
+                                            {{ category.name }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="input-group-text">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div>
+
+        </div>
+        <div class="col-12 col-md-9 ">
+            <div class="row justify-content-around kolona py-2">
+
+                {% for book in trazeneKnjige %}
+
+                <div class="col-md-3">
+                    <div class="card m-3 {% if book.is_taken %}crvenaKnjiska{% else %}knjiska{% endif %} ">
+                        <img src="{{ BASE }}assets/uploads/{{ book.book_id }}.jpg" class="card-img-top mx-auto"
+                            alt="knjiga">
+                        <div class="card-body ">
+                            <h5 class="card-title text-center">{{ book.title|escape }}</h5>
+                            <a href="{{ BASE }}student/book/{{book.book_id}}"> <button type="button"
+                                    class="btn btn-success btn-block dugme-oglas"> Vidi knjigu </button></a>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}student/dashboard"> Dashboard </a> {% endblock %}

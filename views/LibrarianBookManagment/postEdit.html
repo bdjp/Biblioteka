@@ -1,14 +1,22 @@
 {% extends "_global/index.html" %}
 
 {% block main %}
-<a href="{{ BASE }}user/auctions">
-    List all auctions
-</a>
+<div class="container">
+        <div class="row mt-5">
+            <div class="col-10 offset-1 col-md-6 offset-md-3">
+                    <div class="alert alert-danger text-center" role="alert">
+                        <h4 class="alert-heading">{{ message|escape }}</h4>
+                        <p></p>
+                        <hr>
+                    </div>
+            </div>
+        </div>
+    </div>
 
-<p>{{ message|escape }}</p>
 
 {% endblock %}
 
 {% block naslov %}
 Dodatavanje kategorije
 {% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}librarian/dashboard"> Dashboard </a>  {% endblock %}

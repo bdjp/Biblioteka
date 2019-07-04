@@ -1,0 +1,155 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<!-- Statisticki podaci -->
+
+<button class="tablink" onclick="openPage('Home', this, 'red')">Najtraženiji naslovi</button>
+<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">Najčitaniji Autori</button>
+<button class="tablink" onclick="openPage('Contact', this, 'blue')">Opterećenje knjige</button>
+
+
+<!-- Najtraženiji naslovi -->
+<div id="Home" class="tabcontent text-center">
+    <h3>Najtraženiji naslovi</h3>
+    <p>Prikaz statistike najtrazenijih naslova</p>
+    <table class="table table-striped text-left">
+        <thead>
+            <tr>
+                <th scope="col">Red. Br</th>
+                <th scope="col">Naziv knjige</th>
+                <th scope="col">Autor</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Broj rezervacija</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for raz in rez %}
+            <tr>
+                <th scope="row">1</th>
+                <td>{{ raz.ime_knjige}}</td>
+                <td>Ivo Andric</td>
+                <td>123456789</td>
+                <td>150</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th scope="row">2</th>
+                <td>Noz</td>
+                <td>Vuk Draskovic</td>
+                <td>987456321</td>
+                <td>132</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Alisa u zemlji cuda</td>
+                <td>Luis Kerol</td>
+                <td>1122336655</td>
+                <td>110</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- Najcitaniji autori -->
+<div id="News" class="tabcontent text-center">
+    <h3>Najcitaniji autori</h3>
+    <p>Prikaz statistike najcitanijih autora</p>
+
+    <table class="table table-striped text-left">
+        <thead>
+            <tr>
+                <th scope="col">Red. Br</th>
+                <th scope="col">Ime Autora</th>
+                <th scope="col">Prezime Autora</th>
+                <th scope="col">Zemlja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Lav</td>
+                <td>Tolstoj</td>
+                <td>Rusija</td>
+
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Fjodor</td>
+                <td>Dostojevski</td>
+                <td>Rusija</td>
+
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Mark</td>
+                <td>Tven</td>
+                <td>Sjedinjene Americke Drzave</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Opterecenje knjige -->
+<div id="Contact" class="tabcontent text-center">
+    <h3>Opterecenje knjige</h3>
+    <p>Prikaz statistike prosecne opterecenosti knjige u danima</p>
+
+    <table class="table table-striped text-left">
+        <thead>
+            <tr>
+                <th scope="col">Red. Br</th>
+                <th scope="col">Naziv knjige</th>
+                <th scope="col">Knjiga je opterecena prosecno</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Na Drini cuprija</td>
+                <td>60 dana</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Alisa u zemlji cuda</td>
+                <td>30 dana</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Noz</td>
+                <td>15 dana</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<!-- JAVA SCRIPT -->
+<script>
+    function openPage(pageName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+{% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}librarian/dashboard"> Dashboard </a> {% endblock %}

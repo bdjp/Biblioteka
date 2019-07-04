@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("http://localhost/Biblioteka/assets/img/pozadina2.jpg");
+    background-size:auto;
+    overflow-y: hidden;
+}
+
+.card { background-color: rgba(26, 26, 26, 0.6);
+    border-left: 1.5px #fff solid;
+    border-right: 1.5px #fff solid;
+}
+.card-header, .card-footer { opacity: 1}
+
+div.card-header {
+    color: #fff;
+    font-size: 3vh;
+    font-weight: 400;
+}
+div.card-header i {
+    color: #fff;
+}

@@ -1,0 +1,66 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="alert alert-danger text-center" role="alert">
+        Rezervacije
+      </div>
+    </div>
+    {% for rez in rezervacije %}
+    <div class="col-md-3">
+      <div class="card text-white bg-light mb-3">
+        <div class="card-header crveniNaslov text-center">{{ rez.ime_studenta }} {{ rez.prezime_studenta }}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ rez.ime_knjige }}</h5>
+          <p class="card-text">Zaduzenje traje do: {{ rez.expires_at|date("d/m/Y") }} 23:59</p>
+        </div>
+
+
+         <a href="{{ BASE }}librarian/approve/res/{{ rez.book_id }}/">
+           <button class="btn btn-danger1 btn-block"> Odobri</button></a>
+          
+        </form>
+        
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="alert alert-success text-center" role="alert">
+        Odobrene Rezervacije
+      </div>
+    </div>
+
+    {% for rez in odrezervacije %}
+    <div class="col-md-3">
+      <div class="card text-white bg-light mb-3">
+        <div class="card-header zeleniNaslov text-center">{{ rez.ime_studenta }} {{ rez.prezime_studenta }}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ rez.ime_knjige }}</h5>
+          <p class="card-text">Zaduzenje traje do: {{ rez.expires_at|date("d/m/Y") }} 23:59</p>
+        </div>
+
+
+          
+        </form>
+        
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block naslov %}
+Registracija
+{% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}librarian/dashboard"> Dashboard </a> {% endblock %}

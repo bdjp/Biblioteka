@@ -11,12 +11,12 @@
                 </div>
 
                 <div class="col-12 col-md-6">
-                    <h2>{{ book.title|escape}}</h2> 
+                    <h2 class="text-center">{{ book.title|escape}}</h2> 
                     <table class="table mt-5">
                         <tbody>
                             <tr>
                                 <td>Autor</td>
-                                <td>{{ book.title|escape}}</td>
+                                <td>{{ imeAutora }} {{ prezimeAutora }}</td>
                             </tr>
                             <tr>
                                 <td>Godina izdanja</td>
@@ -63,21 +63,28 @@
             </div>
         </div>
     </div>
-        <div class="col-6 col-md-3">
+        <div class="col-10 offset-1 col-md-3 offset-md-0 mb-5">
+            <div class="card">
+                <div class="card-header text-center bibBoja">Zaduzenja\Rezervacije</div>
                 <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action  active disabled" tabindex="-1"
-                            aria-disabled="true">Zaduzenja</a>
-                            {% for stupo in stupi %}
-                        <a href=""  class="list-group-item list-group-item-action">
-                            {{ stupo.forename }} 
+                        <a href="#"  class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Student
+                                <span class="float-right badge badge-pill badge-dark">Kraj zaduzenja</span>
+                                <span class="float-right badge badge-pill badge-dark">Pocetak zaduzenja</span>
+                        </a>
+                            {% for rez in rezervacije %}
+                        <a href="#"  class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
+                            {{ rez.imeStudenta }} {{ rez.prezimeStudenta}}
                               
-                            <span class="float-right badge badge-primary badge-pill">{{ uzeo.created_at }}</span>
+                            <span class="float-right badge {% if rez.vracena == 1 %}badge-success{% else %} badge-danger {% endif %} badge-pill">
+                                {{ rez.expires_at|date("m/d/Y")  }}</span> 
+                            <span class="float-right badge badge-primary badge-pill">{{ rez.created_at|date("m/d/Y")  }}</span>
                                 
                             {% endfor %}
                         </a>
                         <div>
                         </div>
                     </div>
+                </div> 
         </div>
     </div>
 </div>
@@ -88,3 +95,4 @@
 {% block naslov %}
 {{ category.name|escape }}
 {% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}librarian/dashboard"> Dashboard </a>  {% endblock %}

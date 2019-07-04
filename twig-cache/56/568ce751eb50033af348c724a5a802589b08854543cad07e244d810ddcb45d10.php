@@ -31,12 +31,12 @@ class __TwigTemplate_d7d29e9a66d8b56bbc25fd0480493a7c0843bfd3143cdee486132df871c
     protected function doGetParent(array $context)
     {
         // line 1
-        return "_global/index.html";
+        return "_global/sindex.html";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
-        $this->parent = $this->loadTemplate("_global/index.html", "StudentDashboard/index.html", 1);
+        $this->parent = $this->loadTemplate("_global/sindex.html", "StudentDashboard/index.html", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
@@ -66,7 +66,7 @@ class __TwigTemplate_d7d29e9a66d8b56bbc25fd0480493a7c0843bfd3143cdee486132df871c
                                 <a href=\"";
         // line 20
         echo twig_escape_filter($this->env, ($context["BASE"] ?? null), "html", null, true);
-        echo "librarian/books/\"
+        echo "student/book/1/\"
                                  class=\"btn btn-primary\">
                                  <i class=\"fas fa-quote-right\"></i><br>    
                                  Preporuka knjige

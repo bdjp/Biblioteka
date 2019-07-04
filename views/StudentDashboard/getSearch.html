@@ -1,76 +1,73 @@
-{% extends "_global/index.html" %}
+{% extends "_global/sindex.html" %}
 
 {% block main %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-6 col-md-3 borded">
-                Pretraga po kategorijama
-                <div class="card">
-                        <article class="card-group-item">
-                                <header class="card-header">
-                                    <h6 class="title">Izaberite kategoriju</h6>
-                                </header>
-                                <div class="filter-content">
-                                    <div class="card-body">
-                                    {% for category in categories %}
-                                    <label class="form-check">
-                                      <input class="form-check-input" type="radio" name="exampleRadio" value="">
-                                      <span class="form-check-label">
-                                        {{ category.name }}
-                                      </span>
-                                    </label>
-                                    {% endfor %} 
-                                    </div> <!-- card-body.// -->
-                                </div>
-                            </article> <!-- card-group-item.// -->
+  <div class="row ml-md-4 ml-2">
+    <div class="col-12 col-md-3 mt-4">
+      <div class="card ">
+        <div class="card-header text-center studentBoja">
+          <i class="fas fa-book"></i>
+          Pretraga po kljucnoj reči
+        </div>
 
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <h6 class="title">Brands </h6>
-                            </header>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                <form>
-                                    <label class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="">
-                                      <span class="form-check-label">
-                                        Mersedes Benz
-                                      </span>
-                                    </label> <!-- form-check.// -->
-                                    <label class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="">
-                                      <span class="form-check-label">
-                                        Nissan Altima
-                                      </span>
-                                    </label>  <!-- form-check.// -->
-                                    <label class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="">
-                                      <span class="form-check-label">
-                                        Another Brand
-                                      </span>
-                                    </label>  <!-- form-check.// -->
-                                </form>
-                    
-                                </div> <!-- card-body.// -->
-                            </div>
-                        </article> <!-- card-group-item.// -->
-                        
-                        
-                    </div> <!-- card.// -->
-        </div>
-        <div class="col-12 col-md-9 border">
-            <div class="row">
-                <div class="col-12">
-                Pretraga po kljucnoj reci
+        <div class="card-body">
+          <form method="post" action="{{ BASE }}student/book/search/">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" id="search_isbn" name="search_any" class="form-control" required
+                  placeholder="Unesite naslov, isbn ili autora">
+                <div class="input-group-append">
+                  <button type="submit" class="input-group-text">
+                    <i class="fas fa-search"></i>
+                  </button>
                 </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    Knjige
-                </div>
-            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="row ml-md-4 ml-2">
+    <div class="col-6 col-md-3 borded">
+      <div class="card">
+        <article class="card-group-item">
+          <div class="card-header text-center studentBoja">
+            <i class="fas fa-list"></i>
+            Izaberite kategoriju
+          </div>
+          <div class="filter-content">
+            <div class="card-body">
+              <form method="post" action="{{ BASE }}student/book/cat/search/">
+                <div class="input-group">
+                  <select id="category_id" name="category_id" class="form-control">
+                    {% for category in categories %}
+                    <option value="{{ category.category_id }}">
+                      {{ category.name }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                  <div class="input-group-append">
+                    <button type="submit" class="input-group-text">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div> <!-- card-body.// -->
+          </div>
+        </article> <!-- card-group-item.// -->
+
+
+
+      </div> <!-- card.// -->
+    </div>
+    <div class="col-12 col-md-9 ">
+      <div class="row">
+        
+    </div>
+  </div>
 </div>
 
 {% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}student/dashboard"> Dashboard </a>  {% endblock %}

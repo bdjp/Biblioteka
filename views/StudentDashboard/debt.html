@@ -1,0 +1,38 @@
+{% extends "_global/sindex.html" %}
+
+{% block main %}
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12 ">
+
+                <table class="table table-striped text-left">
+                        <thead>
+                          <tr>
+                            <th scope="col">Naziv knjige</th>
+                            <th scope="col">Bibliotekar</th>
+                            <th scope="col">Datum iznajmljivanja</th>
+                            <th scope="col">Datum vracanja</th>
+                            <th scope="col">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for rez in rezervacija %}
+                          <tr>
+                            <td>{{ rez.ime_knjige|escape }}</td>
+                            <td>{{ rez.ime_bib|escape }}</td>
+                            <td>{{ rez.created_at|date }}</td>
+                            <td>{{ rez.expires_at|date }}</td>
+                            <td class="nijevratio">Student nije vratio knjigu</td>
+                          </tr>
+
+                          {% endfor %}
+                      
+                        </tbody>
+                      </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}student/dashboard"> Dashboard </a>  {% endblock %}

@@ -104,7 +104,7 @@
         \Configuration::DATABASE_HOST,
         \Configuration::DATABASE_USER,
         \Configuration::DATABASE_PASS,
-        \Configuration::DATABASE_NAME,
+        \Configuration::DATABASE_NAME
     );
 
     define('BASE', Configuration::BASE);

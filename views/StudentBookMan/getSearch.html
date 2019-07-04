@@ -1,0 +1,91 @@
+{% extends "_global/sindex.html" %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-12 col-md-5 offset-md-2" >
+            <div class="row ">
+            <div class="col-12 col-md-6 mr-auto" id="korice">
+                <img src="{{ BASE }}assets/uploads/{{ book.book_id }}.jpg">
+            </div>
+
+            <div class="col-12 col-md-6">
+                <h2>{{ book.title|escape}}</h2> 
+                <table class="table mt-5">
+                    <tbody>
+                        <tr>
+                            <td>Autor</td>
+                            <td>{{ book.title|escape}}</td>
+                        </tr>
+                        <tr>
+                            <td>Godina izdanja</td>
+                            <td>{{ book.published_at|escape}}</td>
+                        </tr>
+                        <tr>
+                            <td>ISBN </td>
+                            <td>{{ book.isbn|escape}}</td>
+                        </tr>
+                        <tr>
+                            <td>Kategorija</td>
+                            {% for category in categories %}
+                            {% if category.category_id == book.category_id %}
+                            <td>{{ category.name|escape}}</td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Stanje</td>
+                            {% for stanje in stanja %}
+                            {% if stanje.active_id == book.active_id %}
+                            <td>{{ stanje.name|escape}}</td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>Bibliotekar</td>
+                            {% for bib in bibliotekari %}
+                            {% if bib.librarian_id == book.librarian_id %}
+                            <td>{{ bib.forename|escape}} {{ bib.surname|escape}}</td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w-100"></div>
+        </div>
+    <div class="col-12">
+        <div class="product-description opis">
+                <hr>
+                <h4>Opis knjige</h4>
+                <p>{{ book.description|escape}}.</p>
+        </div>
+    </div>
+</div>
+    <div class="col-10 offset-1 col-md-3">
+            <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action  active disabled" tabindex="-1"
+                        aria-disabled="true">Zaduzenja</a>
+                     
+                    {% if porukaZauzeta %}   
+                    <a href="#"  class="list-group-item list-group-item-action disabled" tabindex="-1"
+                    aria-disabled="true">
+                     {{ porukaZauzeta }}
+                    </a>
+                    <form method="POST" action="{{ BASE }}student/book/{{ book.book_id}}">
+                    <a href="#"  class="list-group-item list-group-item-action">
+                      <button type="submit" class="btn btn-success btn-block"> Rezervisi </button>
+                    </a>
+                    </form>
+                    {% else %}
+                    <a href="" class="list-group-item list-group-item-action">
+                        {{ poruka }}
+                       </a>
+                    {% endif %}  
+                </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block dash %} <a class="pl-4 beli-tekst" href="{{ BASE }}student/dashboard"> Dashboard </a>  {% endblock %}
